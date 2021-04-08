@@ -18,4 +18,5 @@ input[type=text], input[type=password] {padding: 5px 4px; border: 1px solid #ccc
 input[readonly] {color: #888}
 
 button {padding: 6px 12px; margin-right: 3px; background-color: #46A7C9; border: 1px solid #fff; color: #fff; cursor: pointer; height: 30px}
-button:hover {background: #02a9e0}
+button:hover:enabled {background: #02a9e0}
+button[disabled] {opacity: .65; cursor: default}
