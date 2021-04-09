@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
     });
 
-	document.querySelectorAll('input').forEach(function (item) {
-		item.addEventListener('focus', function (event) {
+	document.querySelectorAll('input').forEach(function (input) {
+		input.addEventListener('focus', function (event) {
 			save.disabled = false;
 		});
 	});

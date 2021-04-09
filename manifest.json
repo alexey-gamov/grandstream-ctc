@@ -3,7 +3,7 @@
 
 	"name": "Grandstream (click-to-call)",
 	"description": "Преобразуется номера телефонов в активные ссылки для звонка с телефонов Grandstream",
-	"version": "0.0.4",
+	"version": "0.0.5",
 
 	"icons": {
 		"16": "icon.png",
@@ -21,6 +21,7 @@
 	},
 
 	"permissions": [
-		"storage"
+		"storage",
+		"http://*/"
 	]
 }
