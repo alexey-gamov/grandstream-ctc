@@ -6,13 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		login: 'admin',
 		pass: null,
 		number: null,
-		pickup: '*72'
+		pickup: '*72',
+		confirm: 1
 	}, function(items) {
-		document.getElementsByName('ip')[0].value = items.ip;
-		document.getElementsByName('login')[0].value = items.login;
-		document.getElementsByName('pass')[0].value = items.pass;
-		document.getElementsByName('number')[0].value = items.number;
-		document.getElementsByName('pickup')[0].value = items.pickup;
+		for (const [key, value] of Object.entries(items)) switch (key) {
+			case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
+			default: document.getElementsByName(key)[0].value = value;
+		}
+
 		save.disabled = true;
 	});
 
@@ -22,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			login: document.getElementsByName('login')[0].value,
 			pass: document.getElementsByName('pass')[0].value,
 			number: document.getElementsByName('number')[0].value,
-			pickup: document.getElementsByName('pickup')[0].value
+			pickup: document.getElementsByName('pickup')[0].value,
+			confirm: document.querySelector('input[name="confirm"]:checked').value
 		}, function(items) {
 			save.disabled = true;
 		});

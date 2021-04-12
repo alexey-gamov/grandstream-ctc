@@ -68,6 +68,7 @@ function handset() {
 			break;
 
 			case 'makecall':
+				if (!Boolean(Number(connection.confirm)))
 				self.action('call', document.getElementsByName('dial')[0].value);
 			break;
 
@@ -86,4 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			connection.execute(button.name);
 		});
 	});
+});
+
+chrome.tabs.executeScript({
+	code: "window.getSelection().toString()"
+}, function(selection) {
+	if (!chrome.runtime.lastError && selection[0].length > 0)
+	{
+		document.getElementsByName('dial')[0].value = selection[0].replace(new RegExp('[^0-9+]', 'g'), '');
+		connection.execute('makecall');
+	}
 });
