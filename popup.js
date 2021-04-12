@@ -94,7 +94,7 @@ chrome.tabs.executeScript({
 }, function(selection) {
 	if (!chrome.runtime.lastError && selection[0].length > 0)
 	{
-		document.getElementsByName('dial')[0].value = selection[0].replace(new RegExp('[^0-9+]', 'g'), '');
+		document.getElementsByName('dial')[0].value = selection[0].replace(/[^0-9,]/gi, '');
 		connection.execute('makecall');
 	}
 });
