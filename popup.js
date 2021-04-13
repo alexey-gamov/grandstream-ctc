@@ -22,11 +22,6 @@ function handset() {
 		socket.onload = function () {
 			var response = socket.response;
 
-			if (self.debug)
-			{
-				console.log("Handset response: \n" + JSON.stringify(response, null, 4));
-			}
-
 			if (!response || !response.response)
 			{
 				console.log("No response from Handset! Make sure the IP is correct!");
@@ -84,18 +79,19 @@ function handset() {
 			var notice = {
 				idle: {text: '<b>Информация:</b> отсутствует', color: null, hide: true},
 				dialing: {text: '<b>Информация:</b> набор номера', color: null, hide: true},
-				connected: {text: 'Текущий разговор: <b>{tel}</b>', color: '#acacac'},
-				onhold: {text: 'Удержание разговора: <b>{tel}</b>', color: '#acacac'},
-				calling: {text: 'Исходящий вызов: <b>{tel}</b>', color: '#f7941d'},
-				ringing: {text: 'Входящий вызов: <b>{tel}</b>', color: '#39b54a'},
+				connected: {text: '<b>Текущий разговор:</b> {tel}', color: '#acacac'},
+				onhold: {text: '<b>Удержание разговора:</b> {tel}', color: '#acacac'},
+				calling: {text: '<b>Исходящий вызов:</b> {tel}', color: '#f7941d'},
+				ringing: {text: '<b>Входящий вызов:</b> {tel}', color: '#39b54a'},
 				failed: {text: 'Вызов на номер {tel} не удался', color: '#e2001a'}
 			}
-			
-			var data = JSON.parse(JSON.stringify(response.body[0]));
 
-			document.getElementsByTagName('blockquote')[0].style.backgroundColor = notice[data.state].color;
-			document.getElementsByTagName('blockquote')[0].style.display = notice[data.state].hide ? null : 'block';
-			document.getElementsByTagName('blockquote')[0].innerHTML = notice[data.state].text.replace('{tel}', data.remotenumber);
+			var data = JSON.parse(JSON.stringify(response.body[0]));
+			var line = document.getElementsByTagName('blockquote')[0];
+
+			line.style.backgroundColor = notice[data.state].color;
+			line.style.display = notice[data.state].hide ? null : 'block';
+			line.innerHTML = notice[data.state].text.replace('{tel}', data.remotenumber);
 		}
 		else
 		{
