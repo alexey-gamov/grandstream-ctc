@@ -7,7 +7,7 @@ nav a:hover {text-decoration: underline}
 
 main {margin: 0 10px; padding-bottom: 5px}
 header {font-weight: normal; font-size: 1.3em; border-bottom: 1px solid #e1e1e1; padding-bottom: 12px; margin-bottom: 15px}
-blockquote {position: relative; background-color: #8dc63f; border-color: #f5c6cb; color: #fff; margin: 0 0 10px 0; padding: 8px; display: none}
+blockquote {position: relative; background-color: #8dc63f; color: #fff; margin: 0 0 10px 0; padding: 8px; display: none}
 h4 {margin-top: 8px; margin-bottom: 8px}
 
 article {height: 35px; display: flex; margin: 0 -4px 0 -1px}

@@ -4,7 +4,7 @@
 	"name": "Grandstream (click-to-call)",
 	"description": "Преобразуется номера телефонов в активные ссылки для звонка с телефонов Grandstream",
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
-	"version": "0.0.6",
+	"version": "0.0.7",
 
 	"icons": {
 		"16": "icon.png",

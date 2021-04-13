@@ -1,13 +1,12 @@
 function handset() {
 	var self = this;
 
-	this.protocol = 'http://';
-	this.debug = true;
-
 	chrome.storage.sync.get(null, function(items) {
 		for (const [key, value] of Object.entries(items)) {
 			self[key] = value;
 		}
+
+		self.status();
 	});
 
 	this.action = function (type, data, callback) {
@@ -47,7 +46,7 @@ function handset() {
 		};
 
 		socket.responseType = 'json';
-		socket.open('GET', this.protocol + this.ip + url[type] + this.pass);
+		socket.open('GET', 'http://' + this.ip + url[type] + this.pass);
 		socket.send();
 	};
 
@@ -70,7 +69,6 @@ function handset() {
 			break;
 
 			case 'makecall':
-				if (!Boolean(Number(connection.confirm)))
 				self.action('call', document.getElementsByName('dial')[0].value);
 			break;
 
@@ -83,16 +81,29 @@ function handset() {
 	this.status = function(response) {
 		if (response)
 		{
-			// todo: parce info messages and show <blockquote> via css
-			// console.log("Callback: \n" + JSON.stringify(response, null, 4));
+			var notice = {
+				idle: {text: '<b>Информация:</b> отсутствует', color: null, hide: true},
+				dialing: {text: '<b>Информация:</b> набор номера', color: null, hide: true},
+				connected: {text: 'Текущий разговор: <b>{tel}</b>', color: '#acacac'},
+				onhold: {text: 'Удержание разговора: <b>{tel}</b>', color: '#acacac'},
+				calling: {text: 'Исходящий вызов: <b>{tel}</b>', color: '#f7941d'},
+				ringing: {text: 'Входящий вызов: <b>{tel}</b>', color: '#39b54a'},
+				failed: {text: 'Вызов на номер {tel} не удался', color: '#e2001a'}
+			}
+			
+			var data = JSON.parse(JSON.stringify(response.body[0]));
+
+			document.getElementsByTagName('blockquote')[0].style.backgroundColor = notice[data.state].color;
+			document.getElementsByTagName('blockquote')[0].style.display = notice[data.state].hide ? null : 'block';
+			document.getElementsByTagName('blockquote')[0].innerHTML = notice[data.state].text.replace('{tel}', data.remotenumber);
 		}
 		else
 		{
-			// self.action('line', 'current state', self.status);
+			self.action('line', 'current state', self.status);
 		}
 	}
 
-	// this.updater = setInterval(this.status, 3000);
+	this.updater = setInterval(this.status, 1250);
 }
 
 var connection = new handset();
@@ -111,6 +122,6 @@ chrome.tabs.executeScript({
 	if (!chrome.runtime.lastError && selection[0].length > 0)
 	{
 		document.getElementsByName('dial')[0].value = selection[0].replace(/[^0-9,]/gi, '');
-		connection.execute('makecall');
+		if (!Boolean(Number(connection.confirm))) connection.execute('makecall');
 	}
 });
