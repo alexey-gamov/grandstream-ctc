@@ -14,10 +14,11 @@ function handset() {
 		var url = {
 			operation: '/cgi-bin/api-phone_operation?cmd=' + data + '&passcode=',
 			call: '/cgi-bin/api-make_call?phonenumber=' + data + '&account=0&password=',
-			key: '/cgi-bin/api-send_key?keys=' + data.toUpperCase() + '&passcode='
+			keys: '/cgi-bin/api-send_key?keys=' + data.toUpperCase() + '&passcode=',
+			line: '/cgi-bin/api-get_line_status?passcode=',
 		}
 
-		var socket = new XMLHttpRequest(), responseType = 'json';
+		var socket = new XMLHttpRequest();
 
 		socket.onload = function () {
 			var response = socket.response;
@@ -45,6 +46,7 @@ function handset() {
 			}
 		};
 
+		socket.responseType = 'json';
 		socket.open('GET', this.protocol + this.ip + url[type] + this.pass);
 		socket.send();
 	};
@@ -60,7 +62,7 @@ function handset() {
 			break;
 
 			case 'mutecall':
-				self.action('key', 'mute');
+				self.action('keys', 'mute');
 			break;
 
 			case 'holdcall':
@@ -77,6 +79,20 @@ function handset() {
 			break;
 		}
 	};
+
+	this.status = function(response) {
+		if (response)
+		{
+			// todo: parce info messages and show <blockquote> via css
+			// console.log("Callback: \n" + JSON.stringify(response, null, 4));
+		}
+		else
+		{
+			// self.action('line', 'current state', self.status);
+		}
+	}
+
+	// this.updater = setInterval(this.status, 3000);
 }
 
 var connection = new handset();
