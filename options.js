@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			content: document.querySelector('input[name="content"]:checked').value,
 			confirm: document.querySelector('input[name="confirm"]:checked').value
 		}, function(items) {
-			chrome.extension.getBackgroundPage().connection.settings();
+			chrome.extension.getBackgroundPage().telephone.settings();
 			save.disabled = true;
 		});
     });

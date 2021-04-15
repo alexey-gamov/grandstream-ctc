@@ -1,14 +1,14 @@
-var connection = chrome.extension.getBackgroundPage().connection;
+var telephone = chrome.extension.getBackgroundPage().telephone;
 
 document.addEventListener('DOMContentLoaded', function () {
 	document.querySelectorAll('button:not([name="makecall"])').forEach(function (button) {
 		button.addEventListener('click', function (event) {
-			connection.execute(button.name);
+			telephone.execute(button.name);
 		});
 	});
 
 	document.getElementsByName('makecall')[0].addEventListener('click', function (event) {
-		connection.execute('makecall', document.getElementsByName('dial')[0].value)
+		telephone.execute('makecall', document.getElementsByName('dial')[0].value)
 	});
 });
 
@@ -37,6 +37,6 @@ chrome.tabs.executeScript({code: "window.getSelection().toString()"}, function(s
 	if (!chrome.runtime.lastError && selection[0].length > 0)
 	{
 		document.getElementsByName('dial')[0].value = selection[0].replace(/[^0-9]/gi, '');
-		if (!Boolean(Number(connection.confirm))) document.getElementsByName('makecall')[0].click();
+		if (!Boolean(Number(telephone.confirm))) document.getElementsByName('makecall')[0].click();
 	}
 });

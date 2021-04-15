@@ -1,4 +1,4 @@
-var connection = new function handset() {
+var telephone = new function handset() {
 	var self = this;
 
 	this.settings = function() {
