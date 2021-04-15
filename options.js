@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		pass: null,
 		number: null,
 		pickup: '*72',
+		content: 1,
 		confirm: 1
 	}, function(items) {
 		save.disabled = true;
 
 		for (const [key, value] of Object.entries(items)) switch (key) {
-			case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
+			case 'content': case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
 			default: document.getElementsByName(key)[0].value = value;
 		}
 	});
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			pass: document.getElementsByName('pass')[0].value,
 			number: document.getElementsByName('number')[0].value,
 			pickup: document.getElementsByName('pickup')[0].value,
+			content: document.querySelector('input[name="content"]:checked').value,
 			confirm: document.querySelector('input[name="confirm"]:checked').value
 		}, function(items) {
 			chrome.extension.getBackgroundPage().connection.settings();

@@ -2,9 +2,9 @@
 	"manifest_version": 2,
 
 	"name": "Grandstream (click-to-call)",
-	"description": "Преобразуется номера телефонов в активные ссылки для звонка с телефонов Grandstream",
+	"description": "Преобразует номера телефонов в активные ссылки для звонков с телефонов Grandstream",
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
-	"version": "0.1.0",
+	"version": "0.1.1",
 
 	"icons": {
 		"16": "icon.png",
@@ -16,6 +16,13 @@
 		"scripts": ["background.js"],
 		"persistent": true
 	},
+
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+	],
 
 	"browser_action": {
 		"default_icon": "icon.png",
