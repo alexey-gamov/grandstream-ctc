@@ -38,4 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			save.disabled = false;
 		});
 	});
+
+	document.querySelectorAll('[name],[data-locale]').forEach(function(translate) {
+		var message = translate.name ? translate.name : translate.dataset.locale;
+		translate.innerText = chrome.i18n.getMessage(message);
+	});
 });

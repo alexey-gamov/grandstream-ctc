@@ -10,26 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.getElementsByName('makecall')[0].addEventListener('click', function (event) {
 		telephone.execute('makecall', document.getElementsByName('dial')[0].value)
 	});
+
+	document.querySelectorAll('[name],[data-locale]').forEach(function(translate) {
+		var message = translate.name ? translate.name : translate.dataset.locale;
+		translate.innerText = chrome.i18n.getMessage(message);
+	});
 });
 
 chrome.runtime.onMessage.addListener(function (data) {
 	if (typeof data === 'object' && data !== null)
-	{
-		var notice = {
-			idle: {text: '<b>Информация:</b> отсутствует', color: null, hide: true},
-			dialing: {text: '<b>Информация:</b> набор номера', color: null, hide: true},
-			connected: {text: '<b>Текущий разговор:</b> {tel}', color: '#acacac'},
-			onhold: {text: '<b>Удержание разговора:</b> {tel}', color: '#acacac'},
-			calling: {text: '<b>Исходящий вызов:</b> {tel}', color: '#f7941d'},
-			ringing: {text: '<b>Входящий вызов:</b> {tel}', color: '#39b54a'},
-			failed: {text: 'Вызов на номер {tel} не удался', color: '#e2001a'}
-		}
+	{	
+		var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
+		var stripe = document.getElementsByTagName('blockquote')[0];
 
-		var line = document.getElementsByTagName('blockquote')[0];
-
-		line.style.backgroundColor = notice[data.state].color;
-		line.style.display = notice[data.state].hide ? null : 'block';
-		line.innerHTML = notice[data.state].text.replace('{tel}', data.remotenumber);
+		stripe.style.backgroundColor = !colors[data.state] ? null : colors[data.state];
+		stripe.style.display = !colors[data.state] ? null : 'block';
+		stripe.innerHTML = chrome.i18n.getMessage(data.state).replace('{tel}', data.remotenumber);
 	}
 });
 

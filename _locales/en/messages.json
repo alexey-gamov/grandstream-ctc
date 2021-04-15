@@ -1,0 +1,43 @@
+{
+	"description": {"message": "Converts phone numbers to active links for making calls over Grandstream phones"},
+
+	"popup": {"message": "Phone managment"},
+	"options": {"message": "Extension settings"},
+
+	"acceptcall": {"message": "Except"},	
+	"endcall": {"message": "Decline"},
+	"mutecall": {"message": "Mute"},
+	"holdcall": {"message": "Hold"},
+	"makecall": {"message": "Call"},
+	"intercept": {"message": "Intercept"},
+	"save": {"message": "Save settings"},
+
+	"idle": {"message": "<b>Information:</b> none"},
+	"dialing": {"message": "<b>Information:</b> dialing"},
+	"connected": {"message": "<b>Current call:</b> {tel}"},
+	"onhold": {"message": "<b>Call on hold:</b> {tel}"},
+	"calling": {"message": "<b>Outcoming call:</b> {tel}"},
+	"ringing": {"message": "<b>Incoming call:</b> {tel}"},
+	"failed": {"message": "<b>Call failed:</b> {tel}"},
+
+	"link_options": {"message": "Settings"},
+	"link_popup": {"message": "Back"},
+
+	"heading_dial": {"message": "Dialing"},
+	"heading_connect": {"message": "Phone connection"},
+	"heading_numbers": {"message": "Numbers"},
+	"heading_extra": {"message": "Additional options"},
+
+	"mark_ip": {"message": "IP-adress"},
+	"mark_login": {"message": "Login"},
+	"mark_pass": {"message": "Password"},
+	"mark_number": {"message": "Local number"},
+	"mark_pickup": {"message": "Pickup number"},
+	"mark_content": {"message": "Convert tel to links"},
+	"mark_confirm": {"message": "Confirm outcome call"},
+
+	"radio_yes": {"message": "Yes"},
+	"radio_no": {"message": "No"},
+	"radio_always": {"message": "Always"},
+	"radio_byhand": {"message": "By hand"}
+}

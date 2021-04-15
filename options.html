@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 	<title>Grandstream Click-to-Call ⋅ Chrome extension</title>
 	<meta charset="utf-8">
@@ -9,72 +9,72 @@
 <body>
 	<nav>
 		<span>Grandstream (click-to-call)</span>
-		<a href="popup.html">&crarr; Вернуться</a>
+		<a href="popup.html" data-locale="link_popup">back</a>
 	</nav>
 
 	<main>
-		<header>Настройки расширения</header>
-		<h4>Подключение к телефону</h4>
+		<header data-locale="options">extension settings</header>
+		<h4 data-locale="heading_connect">phone connection</h4>
 
 		<article>
-			<mark>IP-адрес</mark>
+			<mark data-locale="mark_ip">ip-adress</mark>
 			<section><input type="text" name="ip"/></section>
 		</article>
 
 		<article>
-			<mark>Логин</mark>
+			<mark data-locale="mark_login">login</mark>
 			<section><input type="text" name="login"/></section>
 		</article>
 
 		<article>
-			<mark>Пароль</mark>
+			<mark data-locale="mark_pass">password</mark>
 			<section><input type="password" name="pass"/></section>
 		</article>
 
-		<h4>Настройки номеров</h4>
+		<h4 data-locale="heading_numbers">numbers</h4>
 
 		<article>
-			<mark>Свой внутр. номер</mark>
+			<mark data-locale="mark_number">local number</mark>
 			<section><input type="text" name="number"/></section>
 		</article>
 
 		<article>
-			<mark>Номер для перехвата</mark>
+			<mark data-locale="mark_pickup">pickup number</mark>
 			<section><input type="text" name="pickup"/></section>
 		</article>
 
-		<h4>Дополнительные опции</h4>
-		
+		<h4 data-locale="heading_extra">additional options</h4>
+
 		<article>
-			<mark>Обрабатывать номера</mark>
+			<mark data-locale="mark_content">convert tel to links</mark>
 			<section>
 				<span>
 					<input type="radio" name="content" value="1"/>
-					<label>Везде</label>
+					<label data-locale="radio_always">always</label>
 				</span>
 				<span>
 					<input type="radio" name="content" value="0"/>
-					<label>Вручную</label>
+					<label data-locale="radio_byhand">by hand</label>
 				</span>
 			</section>
 		</article>
 
 		<article>
-			<mark>Подтверждать звонок</mark>
+			<mark data-locale="mark_confirm">confirm outcome call</mark>
 			<section>
 				<span>
 					<input type="radio" name="confirm" value="1"/>
-					<label>Да</label>
+					<label data-locale="radio_yes">yes</label>
 				</span>
 				<span>
 					<input type="radio" name="confirm" value="0"/>
-					<label>Нет</label>
+					<label data-locale="radio_no">no</label>
 				</span>
 			</section>
 		</article>
 
 		<article>
-			<button type="button" name="save">Сохранить настройки</button>
+			<button type="button" name="save">save settings</button>
 		</article>
 	</main>
 </body>

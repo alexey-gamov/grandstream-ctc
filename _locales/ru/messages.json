@@ -1,0 +1,43 @@
+{
+	"description": {"message": "Преобразует номера телефонов в активные ссылки для звонков с телефонов Grandstream"},
+
+	"popup": {"message": "Управление звонками"},
+	"options": {"message": "Настройки расширения"},
+
+	"acceptcall": {"message": "Принять"},	
+	"endcall": {"message": "Завершить"},
+	"mutecall": {"message": "Микрофон"},
+	"holdcall": {"message": "Удержание"},
+	"makecall": {"message": "Вызвать"},
+	"intercept": {"message": "Перехватить"},
+	"save": {"message": "Сохранить настройки"},
+
+	"idle": {"message": "<b>Информация:</b> отсутствует"},
+	"dialing": {"message": "<b>Информация:</b> набор номера"},
+	"connected": {"message": "<b>Текущий разговор:</b> {tel}"},
+	"onhold": {"message": "<b>Удержание разговора:</b> {tel}"},
+	"calling": {"message": "<b>Исходящий вызов:</b> {tel}"},
+	"ringing": {"message": "<b>Входящий вызов:</b> {tel}"},
+	"failed": {"message": "Вызов на номер {tel} не удался"},
+
+	"link_options": {"message": "Настройки"},
+	"link_popup": {"message": "Назад"},
+
+	"heading_dial": {"message": "Набор номера"},
+	"heading_connect": {"message": "Подключение к телефону"},
+	"heading_numbers": {"message": "Настройки номеров"},
+	"heading_extra": {"message": "Дополнительные опции"},
+
+	"mark_ip": {"message": "IP-адрес"},
+	"mark_login": {"message": "Логин"},
+	"mark_pass": {"message": "Пароль"},
+	"mark_number": {"message": "Свой внутр. номер"},
+	"mark_pickup": {"message": "Номер для перехвата"},
+	"mark_content": {"message": "Обрабатывать номера"},
+	"mark_confirm": {"message": "Подтверждать звонок"},
+
+	"radio_yes": {"message": "Да"},
+	"radio_no": {"message": "Нет"},
+	"radio_always": {"message": "Везде"},
+	"radio_byhand": {"message": "Вручную"}
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 	<title>Grandstream Click-to-Call ⋅ Chrome extension</title>
 	<meta charset="utf-8">
@@ -9,26 +9,26 @@
 <body>
 	<nav>
 		<span>Grandstream (click-to-call)</span>
-		<a href="options.html">Настройки</a>
+		<a href="options.html" data-locale="link_options">settings</a>
 	</nav>
 
 	<main>
-		<header>Управление звонками</header>
-		<blockquote><b>Информация:</b> отсутствует</blockquote>
+		<header data-locale="popup">phone managment</header>
+		<blockquote><b>information:</b> none</blockquote>
 
 		<article>
-			<button type="button" name="acceptcall">Принять</button>
-			<button type="button" name="endcall">Завершить</button>
-			<button type="button" name="mutecall">Микрофон</button>
-			<button type="button" name="holdcall">Удержание</button>
+			<button type="button" name="acceptcall">except</button>
+			<button type="button" name="endcall">decline</button>
+			<button type="button" name="mutecall">mute</button>
+			<button type="button" name="holdcall">hold</button>
 		</article>
 
-		<h4>Набор номера</h4>
+		<h4 data-locale="heading_dial">dialing</h4>
 
 		<article>
 			<mark><input type="text" name="dial"/></mark>
-			<button type="button" name="makecall">Вызвать</button>
-			<button type="button" name="intercept">Перехватить</button>
+			<button type="button" name="makecall">call</button>
+			<button type="button" name="intercept">intercept</button>
 		</article>
 	</main>
 </body>
