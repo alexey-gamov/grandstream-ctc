@@ -74,8 +74,20 @@ var connection = new function handset() {
 	};
 
 	this.status = function(response) {
-		if (response) chrome.runtime.sendMessage(JSON.parse(JSON.stringify(response.body[0])));
-		else self.action('line', 'current state', self.status);
+		if (response)
+		{
+			var answer = JSON.parse(JSON.stringify(response.body[0]));
+			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
+
+			chrome.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? "#4285f4" : colors[answer.state]});
+			chrome.browserAction.setBadgeText({text: !colors[answer.state] ? "" : "…"});
+
+			chrome.runtime.sendMessage(answer);
+		}
+		else
+		{
+			self.action('line', 'current state', self.status);
+		}
 	}
 
 	this.settings();
