@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		pickup: '*72',
 		confirm: 1
 	}, function(items) {
+		save.disabled = true;
+
 		for (const [key, value] of Object.entries(items)) switch (key) {
 			case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
 			default: document.getElementsByName(key)[0].value = value;
 		}
-
-		save.disabled = true;
 	});
 
 	save.addEventListener('click', function() {
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			pickup: document.getElementsByName('pickup')[0].value,
 			confirm: document.querySelector('input[name="confirm"]:checked').value
 		}, function(items) {
+			chrome.extension.getBackgroundPage().connection.settings();
 			save.disabled = true;
 		});
     });
