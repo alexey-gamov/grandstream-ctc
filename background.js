@@ -9,7 +9,7 @@ var telephone = new function handset() {
 		});
 	}
 
-	this.action = function (type, data, callback) {
+	this.action = function(type, data, callback) {
 		var url = {
 			operation: '/cgi-bin/api-phone_operation?cmd=' + data + '&passcode=',
 			call: '/cgi-bin/api-make_call?phonenumber=' + data + '&account=0&password=',
@@ -19,7 +19,11 @@ var telephone = new function handset() {
 
 		var socket = new XMLHttpRequest();
 
-		socket.onload = function () {
+		socket.onerror = function() {
+			console.log("Unknown Error Occured. Make sure that Handset IP is correct!");
+		};
+
+		socket.onload = function() {
 			var response = socket.response;
 
 			if (!response || !response.response)

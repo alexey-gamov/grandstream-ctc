@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 	var save = document.getElementsByName('save')[0];
 
 	chrome.storage.sync.get({
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}, function(items) {
 		save.disabled = true;
 
-		for (const [key, value] of Object.entries(items)) switch (key) {
+		for (const [key, value] of Object.entries(items)) switch(key) {
 			case 'content': case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
 			default: document.getElementsByName(key)[0].value = value;
 		}
@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
     });
 
-	document.querySelectorAll('input').forEach(function (input) {
-		input.addEventListener('focus', function (event) {
+	document.querySelectorAll('input').forEach(function(input) {
+		input.addEventListener('focus', function() {
 			save.disabled = false;
 		});
 	});

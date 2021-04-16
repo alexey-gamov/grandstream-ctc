@@ -21,7 +21,7 @@
 	"failed": {"message": "Вызов на номер {tel} не удался"},
 
 	"link_options": {"message": "Настройки"},
-	"link_popup": {"message": "Назад"},
+	"link_popup": {"message": "↵ Назад"},
 
 	"heading_dial": {"message": "Набор номера"},
 	"heading_connect": {"message": "Подключение к телефону"},

@@ -21,7 +21,7 @@
 	"failed": {"message": "<b>Call failed:</b> {tel}"},
 
 	"link_options": {"message": "Settings"},
-	"link_popup": {"message": "Back"},
+	"link_popup": {"message": "↵ Back"},
 
 	"heading_dial": {"message": "Dialing"},
 	"heading_connect": {"message": "Phone connection"},

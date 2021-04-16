@@ -1,13 +1,13 @@
 var telephone = chrome.extension.getBackgroundPage().telephone;
 
-document.addEventListener('DOMContentLoaded', function () {
-	document.querySelectorAll('button:not([name="makecall"])').forEach(function (button) {
-		button.addEventListener('click', function (event) {
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelectorAll('button:not([name="makecall"])').forEach(function(button) {
+		button.addEventListener('click', function() {
 			telephone.execute(button.name);
 		});
 	});
 
-	document.getElementsByName('makecall')[0].addEventListener('click', function (event) {
+	document.getElementsByName('makecall')[0].addEventListener('click', function(event) {
 		telephone.execute('makecall', document.getElementsByName('dial')[0].value)
 	});
 
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 });
 
-chrome.runtime.onMessage.addListener(function (data) {
-	if (typeof data === 'object' && data !== null)
-	{	
+chrome.runtime.onMessage.addListener(function(data) {
+	if (typeof(data) === 'object')
+	{
 		var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
 		var stripe = document.getElementsByTagName('blockquote')[0];
 
