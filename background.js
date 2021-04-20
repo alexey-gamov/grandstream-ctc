@@ -94,6 +94,13 @@ var telephone = new function handset() {
 		}
 	}
 
+	this.runtime = chrome.runtime.onMessage.addListener(function (message) {
+		if (typeof(message) === 'string')
+		{
+			self.execute('makecall', message);
+		}
+	});
+
 	this.settings();
-	this.updater = setInterval(this.status, 1250);
+	this.updater = setInterval(this.status, 1750);
 }
