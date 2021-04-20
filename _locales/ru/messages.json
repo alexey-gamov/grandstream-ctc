@@ -39,5 +39,7 @@
 	"radio_yes": {"message": "Да"},
 	"radio_no": {"message": "Нет"},
 	"radio_always": {"message": "Везде"},
-	"radio_byhand": {"message": "Вручную"}
+	"radio_byhand": {"message": "Вручную"},
+
+	"confirmation": {"message": "Набрать номер {tel} ?"}
 }

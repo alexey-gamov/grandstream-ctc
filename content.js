@@ -27,12 +27,12 @@ window.onload = chrome.storage.sync.get({content: 0}, function (items) {
 		while(node = walker.nextNode()) nodes.push(node);
 
 		nodes.forEach(function(node) {
-			var tel = node.textContent.replace(/[^0-9]/gi, '');
+			var call = node.textContent.replace(/[^0-9]/gi, '');
 			var link = document.createElement('a');
 
-			link.href = 'phone:' + tel;
+			link.href = 'phone:' + call;
 			link.innerHTML = node.textContent;
-			link.onclick = function() {chrome.runtime.sendMessage(tel)};
+			link.onclick = function() {chrome.runtime.sendMessage(call)};
 
 			node.replaceWith(link);
 		});

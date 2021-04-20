@@ -39,5 +39,7 @@
 	"radio_yes": {"message": "Yes"},
 	"radio_no": {"message": "No"},
 	"radio_always": {"message": "Always"},
-	"radio_byhand": {"message": "By hand"}
+	"radio_byhand": {"message": "By hand"},
+	
+	"confirmation": {"message": "Call number {tel} ?"}
 }

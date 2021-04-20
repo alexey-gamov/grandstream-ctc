@@ -97,6 +97,7 @@ var telephone = new function handset() {
 	this.runtime = chrome.runtime.onMessage.addListener(function (message) {
 		if (typeof(message) === 'string')
 		{
+			if (Boolean(Number(self.confirm)) && !confirm(chrome.i18n.getMessage('confirmation').replace('{tel}', message))) return;
 			self.execute('makecall', message);
 		}
 	});
