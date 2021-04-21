@@ -15,19 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		var message = translate.name ? translate.name : translate.dataset.locale;
 		translate.innerText = chrome.i18n.getMessage(message);
 	});
-});
 
-chrome.runtime.onMessage.addListener(function(data) {
-	if (typeof(data) === 'object')
-	{
-		var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
-		var number = data.remotename ? data.remotenumber + ' (' + data.remotename + ')' : data.remotenumber;
-		var stripe = document.getElementsByTagName('blockquote')[0];
+	telephone.status.listener(function(data) {
+		if (typeof(data.text) != 'undefined')
+		{
+			var stripe = document.getElementsByTagName('blockquote')[0];			
+			var number = data.msg.remotename ? data.msg.remotenumber + ' (' + data.msg.remotename + ')' : data.msg.remotenumber;
 
-		stripe.style.backgroundColor = !colors[data.state] ? null : colors[data.state];
-		stripe.style.display = !colors[data.state] ? null : 'block';
-		stripe.innerHTML = chrome.i18n.getMessage(data.state).replace('{tel}', number);
-	}
+			stripe.style.backgroundColor = !data.color ? null : data.color;
+			stripe.style.display = !data.color ? null : 'block';
+			stripe.innerHTML = data.text.replace('{tel}', number);
+		}
+	});
 });
 
 chrome.tabs.executeScript({code: "window.getSelection().toString()"}, function(selection) {

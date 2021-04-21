@@ -77,20 +77,35 @@ var telephone = new function handset() {
 		}
 	};
 
-	this.status = function(response) {
+	this.status = {
+		object: {},
+		change: function(value) {},
+
+		set now(value) {
+			this.object = value;
+			this.change(value);
+		},
+
+		listener: function(output) {
+			this.change = output;
+			this.change(this.object);
+		}
+	};
+
+	this.update = function(response) {
 		if (response)
 		{
 			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
 			var answer = JSON.parse(JSON.stringify(response.body[0]));
 
-			chrome.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? "#4285f4" : colors[answer.state]});
-			chrome.browserAction.setBadgeText({text: !colors[answer.state] ? "" : "…"});
+			chrome.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? '#4285f4' : colors[answer.state]});
+			chrome.browserAction.setBadgeText({text: !colors[answer.state] ? '' : '…'});
 
-			chrome.runtime.sendMessage(answer);
+			self.status.now = {text: chrome.i18n.getMessage(answer.state), color: colors[answer.state], msg: answer};		
 		}
 		else
 		{
-			self.action('line', 'current state', self.status);
+			self.action('line', 'current-state', self.update);
 		}
 	}
 
@@ -103,5 +118,5 @@ var telephone = new function handset() {
 	});
 
 	this.settings();
-	this.updater = setInterval(this.status, 1750);
+	this.updater = setInterval(this.update, 2500);
 }
