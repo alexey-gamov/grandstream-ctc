@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		var message = translate.name ? translate.name : translate.dataset.locale;
 		translate.innerText = chrome.i18n.getMessage(message);
 	});
+	
+	document.getElementsByName('dial')[0].addEventListener('keypress', function(event) {
+		return String.fromCharCode(event.keyCode).match(/[0-9]/) ? true : event.preventDefault();
+	});
 
 	telephone.status.listener(function(data) {
 		if (typeof(data.text) != 'undefined')

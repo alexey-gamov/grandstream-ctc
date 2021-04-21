@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
     });
 
+	document.getElementsByName('ip')[0].addEventListener('keypress', function(event) {
+		return String.fromCharCode(event.keyCode).match(/[0-9.]/) ? true : event.preventDefault();
+	});
+
 	document.querySelectorAll('input').forEach(function(input) {
 		input.addEventListener('focus', function() {
 			save.disabled = false;
