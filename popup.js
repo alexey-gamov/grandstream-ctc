@@ -1,4 +1,5 @@
-var telephone = chrome.extension.getBackgroundPage().telephone;
+var platform = (chrome) ? chrome : browser;
+var telephone = platform.extension.getBackgroundPage().telephone;
 
 document.addEventListener('DOMContentLoaded', function() {
 	document.querySelectorAll('button:not([name="makecall"])').forEach(function(button) {
@@ -11,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		telephone.execute('makecall', document.getElementsByName('dial')[0].value)
 	});
 
-	document.querySelectorAll('[name],[data-locale]').forEach(function(translate) {
+	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
 		var message = translate.name ? translate.name : translate.dataset.locale;
-		translate.innerText = chrome.i18n.getMessage(message);
+		translate.innerText = platform.i18n.getMessage(message);
 	});
 	
 	document.getElementsByName('dial')[0].addEventListener('keypress', function(event) {
@@ -33,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
-chrome.tabs.executeScript({code: "window.getSelection().toString()"}, function(selection) {
-	if (!chrome.runtime.lastError && selection[0].length > 0)
+platform.tabs.executeScript({code: "window.getSelection().toString()"}, function(selection) {
+	if (!platform.runtime.lastError && selection[0].length > 0)
 	{
 		document.getElementsByName('dial')[0].value = selection[0].replace(/[^0-9]/gi, '');
 		if (!Boolean(Number(telephone.confirm))) document.getElementsByName('makecall')[0].click();

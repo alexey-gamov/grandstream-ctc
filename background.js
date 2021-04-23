@@ -1,8 +1,9 @@
 var telephone = new function handset() {
+	var platform = (chrome) ? chrome : browser;
 	var self = this;
 
 	this.settings = function() {
-		chrome.storage.sync.get(null, function(items) {
+		platform.storage.local.get(null, function(items) {
 			for (const [key, value] of Object.entries(items)) {
 				self[key] = value;
 			}
@@ -14,7 +15,7 @@ var telephone = new function handset() {
 			operation: '/cgi-bin/api-phone_operation?cmd=' + data + '&passcode=',
 			call: '/cgi-bin/api-make_call?phonenumber=' + data + '&account=0&password=',
 			keys: '/cgi-bin/api-send_key?keys=' + data.toUpperCase() + '&passcode=',
-			line: '/cgi-bin/api-get_line_status?passcode=',
+			line: '/cgi-bin/api-get_line_status?passcode='
 		}
 
 		var socket = new XMLHttpRequest();
@@ -98,10 +99,15 @@ var telephone = new function handset() {
 			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
 			var answer = JSON.parse(JSON.stringify(response.body[0]));
 
-			chrome.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? '#4285f4' : colors[answer.state]});
-			chrome.browserAction.setBadgeText({text: !colors[answer.state] ? '' : '…'});
+			platform.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? '#4285f4' : colors[answer.state]});
+			platform.browserAction.setBadgeText({text: !colors[answer.state] ? '' : '…'});
 
-			self.status.now = {text: chrome.i18n.getMessage(answer.state), color: colors[answer.state], msg: answer};		
+			try {
+				self.status.now = {text: platform.i18n.getMessage(answer.state), color: colors[answer.state], msg: answer}
+			}
+			catch(e) {
+				//
+			}
 		}
 		else
 		{
@@ -109,12 +115,8 @@ var telephone = new function handset() {
 		}
 	}
 
-	this.runtime = chrome.runtime.onMessage.addListener(function (message) {
-		if (typeof(message) === 'string')
-		{
-			if (Boolean(Number(self.confirm)) && !confirm(chrome.i18n.getMessage('confirmation').replace('{tel}', message))) return;
-			self.execute('makecall', message);
-		}
+	this.runtime = platform.runtime.onMessage.addListener(function (message) {
+		if (typeof(message) === 'string') self.execute('makecall', message);
 	});
 
 	this.settings();

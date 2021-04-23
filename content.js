@@ -1,4 +1,6 @@
-window.onload = chrome.storage.sync.get({content: 0}, function (items) {
+var platform = (chrome) ? chrome : browser;
+
+window.onload = platform.storage.local.get({content: 0, confirm: 0}, function (items) {
 	if (items.content == 1)
 	{
 		filter = function(inspect) {
@@ -32,7 +34,11 @@ window.onload = chrome.storage.sync.get({content: 0}, function (items) {
 
 			link.href = 'phone:' + call;
 			link.innerHTML = node.textContent;
-			link.onclick = function() {chrome.runtime.sendMessage(call)};
+
+			link.onclick = function() {
+				if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation').replace('{tel}', call))) return;
+				platform.runtime.sendMessage(call);
+			};
 
 			node.replaceWith(link);
 		});

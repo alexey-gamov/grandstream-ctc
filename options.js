@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+	var platform = (chrome) ? chrome : browser;
 	var save = document.getElementsByName('save')[0];
 
-	chrome.storage.sync.get({
+	platform.storage.local.get({
 		ip: '192.168.1.0',
 		login: 'admin',
 		pass: null,
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	save.addEventListener('click', function() {
-		chrome.storage.sync.set({
+		platform.storage.local.set({
 			ip: document.getElementsByName('ip')[0].value,
 			login: document.getElementsByName('login')[0].value,
 			pass: document.getElementsByName('pass')[0].value,
@@ -43,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	document.querySelectorAll('[name],[data-locale]').forEach(function(translate) {
+	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
 		var message = translate.name ? translate.name : translate.dataset.locale;
-		translate.innerText = chrome.i18n.getMessage(message);
+		translate.innerText = platform.i18n.getMessage(message);
 	});
 });
