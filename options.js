@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
+	platform.tabs.query({active: true}, function(tabs) {
+		if (typeof(tabs[0].url) == 'undefined') document.getElementsByTagName('nav')[0].hidden = true;
+	});
+
 	save.addEventListener('click', function() {
 		platform.storage.local.set({
 			ip: document.getElementsByName('ip')[0].value,

@@ -4,6 +4,7 @@ nav {padding: 2px; height: 28px; line-height: 28px; background: #295288; color: 
 nav span {text-align: left; float: left; padding-left: 8px; font-weight: bold}
 nav a {text-align: right; float: right; padding-right: 6px; font-size: 12px; color: #fff; text-decoration: none}
 nav a:hover {text-decoration: underline}
+nav[hidden] ~ main {margin-top: 10px}
 
 main {margin: 0 10px; padding-bottom: 5px}
 header {font-weight: normal; font-size: 1.3em; border-bottom: 1px solid #e1e1e1; padding-bottom: 12px; margin-bottom: 15px}
