@@ -1,4 +1,4 @@
-var platform = (chrome) ? chrome : browser;
+var platform = chrome || browser;
 var telephone = platform.extension.getBackgroundPage().telephone;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
-		var message = translate.name ? translate.name : translate.dataset.locale;
-		translate.innerText = platform.i18n.getMessage(message);
+		translate.innerText = platform.i18n.getMessage(translate.name || translate.dataset.locale);
 	});
 	
 	document.getElementsByName('dial')[0].addEventListener('keypress', function(event) {
@@ -27,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			var stripe = document.getElementsByTagName('blockquote')[0];			
 			var number = data.msg.remotename ? data.msg.remotenumber + ' (' + data.msg.remotename + ')' : data.msg.remotenumber;
 
-			stripe.style.backgroundColor = !data.color ? null : data.color;
-			stripe.style.display = !data.color ? null : 'block';
+			stripe.style.backgroundColor = data.color || null;
+			stripe.style.display = data.color ? 'block' : null;
 			stripe.innerHTML = data.text.replace('{tel}', number);
 		}
 	});

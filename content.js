@@ -1,4 +1,4 @@
-var platform = (chrome) ? chrome : browser;
+var platform = chrome || browser;
 
 window.onload = platform.storage.local.get({content: 0, confirm: 0}, function (items) {
 	if (items.content == 1)
@@ -29,18 +29,18 @@ window.onload = platform.storage.local.get({content: 0, confirm: 0}, function (i
 		while(node = walker.nextNode()) nodes.push(node);
 
 		nodes.forEach(function(node) {
-			var call = node.textContent.replace(/[^0-9]/gi, '');
-			var link = document.createElement('a');
+			var number = node.textContent.replace(/[^0-9]/gi, '');
+			var object = document.createElement('a');
 
-			link.href = 'phone:' + call;
-			link.innerHTML = node.textContent;
+			object.href = 'phone:' + number;
+			object.innerHTML = node.textContent;
 
-			link.onclick = function() {
-				if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation').replace('{tel}', call))) return;
-				platform.runtime.sendMessage(call);
+			object.onclick = function() {
+				if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation').replace('{tel}', number))) return;
+				platform.runtime.sendMessage({tel: number});
 			};
 
-			node.replaceWith(link);
+			node.replaceWith(object);
 		});
 	}
 });

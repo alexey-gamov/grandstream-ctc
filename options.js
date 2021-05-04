@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-	var platform = (chrome) ? chrome : browser;
+	var platform = chrome || browser;
 	var save = document.getElementsByName('save')[0];
 
 	platform.storage.local.get({
@@ -19,10 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	platform.tabs.query({active: true}, function(tabs) {
-		if (typeof(tabs[0].url) == 'undefined') document.getElementsByTagName('nav')[0].hidden = true;
-	});
-
 	save.addEventListener('click', function() {
 		platform.storage.local.set({
 			ip: document.getElementsByName('ip')[0].value,
@@ -33,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			content: document.querySelector('input[name="content"]:checked').value,
 			confirm: document.querySelector('input[name="confirm"]:checked').value
 		}, function(items) {
-			chrome.extension.getBackgroundPage().telephone.settings();
+			platform.extension.getBackgroundPage().telephone.settings();
 			save.disabled = true;
 		});
     });
@@ -49,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
-		var message = translate.name ? translate.name : translate.dataset.locale;
-		translate.innerText = platform.i18n.getMessage(message);
+		translate.innerText = platform.i18n.getMessage(translate.name || translate.dataset.locale);
 	});
 });

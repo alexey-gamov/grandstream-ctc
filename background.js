@@ -1,5 +1,5 @@
 var telephone = new function handset() {
-	var platform = (chrome) ? chrome : browser;
+	var platform = chrome || browser;
 	var self = this;
 
 	this.settings = function() {
@@ -99,14 +99,14 @@ var telephone = new function handset() {
 			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
 			var answer = JSON.parse(JSON.stringify(response.body[0]));
 
-			platform.browserAction.setBadgeBackgroundColor({color: !colors[answer.state] ? '#4285f4' : colors[answer.state]});
-			platform.browserAction.setBadgeText({text: !colors[answer.state] ? '' : '…'});
+			platform.browserAction.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
+			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
 
 			try {
 				self.status.now = {text: platform.i18n.getMessage(answer.state), color: colors[answer.state], msg: answer}
 			}
 			catch(e) {
-				//
+				// FireFox = Uncaught TypeError: can't access dead object (set now)
 			}
 		}
 		else
@@ -116,7 +116,7 @@ var telephone = new function handset() {
 	}
 
 	this.runtime = platform.runtime.onMessage.addListener(function (message) {
-		if (typeof(message) === 'string') self.execute('makecall', message);
+		if (message.tel) self.execute('makecall', message.tel);
 	});
 
 	this.settings();
