@@ -6,24 +6,21 @@
 
 Преобразует номера телефонов в активные ссылки для звонков с телефонов Grandstream.
 
-Пока доступна работа только в `режиме разработчика` _(загрузить запакованное расширение)_.
-
 ## Возможности
 
 - Полноценный парсинг телефонных номеров
 - Отображение текущего состояния звонков
 - Набор номера из расширения и сайтов
 
-### Поддержка
+### Установить
 
-- [Mozilla Firefox](https://mozilla.org/firefox/new/)
-- [Google Chrome](https://google.com/chrome/)
+- [Google Chrome](https://chrome.google.com/webstore/detail/grandstream-click-to-call/gcmffhldcmblemadbaooobdopcbjkcpc) (Opera & Edge)
+- [Mozilla Firefox](https://addons.mozilla.org/ru/firefox/addon/grandstream-ctc/)
 
 ### Планы
 
 - Отображение ошибок подключения к аппарату
 - Добавление новых локализаций
-- Размещение на площадках
 
 ## Лицензия
 
