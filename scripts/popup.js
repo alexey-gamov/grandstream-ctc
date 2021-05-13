@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	document.getElementsByName('makecall')[0].addEventListener('click', function(event) {
-		telephone.execute('makecall', document.getElementsByName('dial')[0].value)
+		telephone.execute('makecall', document.getElementsByName('dial')[0].value);
 	});
 
 	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			stripe.style.display = data.color ? 'block' : null;
 			stripe.innerHTML = data.text;
 		}
+
+		document.querySelectorAll('button, input').forEach(function(control) {
+			control.disabled = data.fail;
+		});
 	});
 });
 

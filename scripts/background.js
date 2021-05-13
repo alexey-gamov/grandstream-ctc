@@ -8,6 +8,8 @@ var telephone = new function handset() {
 				self[key] = value;
 			}
 		});
+
+		self.status.now = {fail: false};
 	}
 
 	this.action = function(type, data, callback) {
@@ -22,6 +24,7 @@ var telephone = new function handset() {
 
 		socket.onerror = function() {
 			console.log("Unknown Error Occured. Make sure that Handset IP is correct!");
+			self.status.now = {text: platform.i18n.getMessage('fail'), color: '#ccc', fail: true};
 		};
 
 		socket.onload = function() {

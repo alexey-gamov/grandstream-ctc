@@ -12,6 +12,7 @@
 	"intercept": {"message": "Intercept"},
 	"save": {"message": "Save settings"},
 
+	"fail": {"message": "<b>Connection error:</b> no handset found"},
 	"idle": {"message": "<b>Information:</b> none"},
 	"dialing": {"message": "<b>Information:</b> dialing"},
 	"connected": {"message": "<b>Current call:</b> $1"},
