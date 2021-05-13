@@ -14,11 +14,11 @@
 
 	"idle": {"message": "<b>Информация:</b> отсутствует"},
 	"dialing": {"message": "<b>Информация:</b> набор номера"},
-	"connected": {"message": "<b>Текущий разговор:</b> {tel}"},
-	"onhold": {"message": "<b>Удержание разговора:</b> {tel}"},
-	"calling": {"message": "<b>Исходящий вызов:</b> {tel}"},
-	"ringing": {"message": "<b>Входящий вызов:</b> {tel}"},
-	"failed": {"message": "Вызов на номер {tel} не удался"},
+	"connected": {"message": "<b>Текущий разговор:</b> $1"},
+	"onhold": {"message": "<b>Удержание разговора:</b> $1"},
+	"calling": {"message": "<b>Исходящий вызов:</b> $1"},
+	"ringing": {"message": "<b>Входящий вызов:</b> $1"},
+	"failed": {"message": "Вызов на номер $1 не удался"},
 
 	"link_options": {"message": "Настройки"},
 	"link_popup": {"message": "↵ Назад"},
@@ -41,5 +41,5 @@
 	"radio_always": {"message": "Везде"},
 	"radio_byhand": {"message": "Вручную"},
 
-	"confirmation": {"message": "Набрать номер {tel} ?"}
+	"confirmation": {"message": "Набрать номер $1?"}
 }

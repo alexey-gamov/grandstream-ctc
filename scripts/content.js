@@ -36,7 +36,7 @@ window.onload = platform.storage.local.get({content: 0, confirm: 0}, function (i
 			object.innerHTML = node.textContent;
 
 			object.onclick = function() {
-				if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation').replace('{tel}', number))) return;
+				if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation', number))) return;
 				platform.runtime.sendMessage({tel: number});
 			};
 

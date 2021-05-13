@@ -14,11 +14,11 @@
 
 	"idle": {"message": "<b>Information:</b> none"},
 	"dialing": {"message": "<b>Information:</b> dialing"},
-	"connected": {"message": "<b>Current call:</b> {tel}"},
-	"onhold": {"message": "<b>Call on hold:</b> {tel}"},
-	"calling": {"message": "<b>Outcoming call:</b> {tel}"},
-	"ringing": {"message": "<b>Incoming call:</b> {tel}"},
-	"failed": {"message": "<b>Call failed:</b> {tel}"},
+	"connected": {"message": "<b>Current call:</b> $1"},
+	"onhold": {"message": "<b>Call on hold:</b> $1"},
+	"calling": {"message": "<b>Outcoming call:</b> $1"},
+	"ringing": {"message": "<b>Incoming call:</b> $1"},
+	"failed": {"message": "<b>Call failed:</b> $1"},
 
 	"link_options": {"message": "Settings"},
 	"link_popup": {"message": "↵ Back"},
@@ -40,6 +40,6 @@
 	"radio_no": {"message": "No"},
 	"radio_always": {"message": "Always"},
 	"radio_byhand": {"message": "By hand"},
-	
-	"confirmation": {"message": "Call number {tel} ?"}
+
+	"confirmation": {"message": "Call number $1?"}
 }

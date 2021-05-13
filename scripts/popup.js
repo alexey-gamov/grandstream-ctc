@@ -24,11 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (typeof(data.text) != 'undefined')
 		{
 			var stripe = document.getElementsByTagName('blockquote')[0];			
-			var number = data.msg.remotename ? data.msg.remotenumber + ' (' + data.msg.remotename + ')' : data.msg.remotenumber;
 
 			stripe.style.backgroundColor = data.color || null;
 			stripe.style.display = data.color ? 'block' : null;
-			stripe.innerHTML = data.text.replace('{tel}', number);
+			stripe.innerHTML = data.text;
 		}
 	});
 });

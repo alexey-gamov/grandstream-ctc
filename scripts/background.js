@@ -98,12 +98,13 @@ var telephone = new function handset() {
 		{
 			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
 			var answer = JSON.parse(JSON.stringify(response.body[0]));
+			var number = answer.remotename ? answer.remotenumber + ' (' + answer.remotename + ')': answer.remotenumber;
 
 			platform.browserAction.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
 			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
 
 			try {
-				self.status.now = {text: platform.i18n.getMessage(answer.state), color: colors[answer.state], msg: answer}
+				self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]}
 			}
 			catch(e) {
 				// FireFox = Uncaught TypeError: can't access dead object (set now)
