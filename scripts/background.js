@@ -38,7 +38,7 @@ var telephone = new function handset() {
 
 			if (typeof(response.response) !== "string")
 			{
-				console.log("Unexpected response from the Handset\"s API!")
+				console.log("Unexpected response from the Handset\"s API!");
 				return;
 			}
 
@@ -51,34 +51,6 @@ var telephone = new function handset() {
 		socket.responseType = 'json';
 		socket.open('GET', 'http://' + this.ip + url[type] + this.pass);
 		socket.send();
-	};
-
-	this.execute = function(name, parameter) {
-		switch (name) {
-			case 'acceptcall':
-				self.action('operation', 'acceptcall');
-			break;
-
-			case 'endcall':
-				self.action('operation', 'endcall');
-			break;
-
-			case 'mutecall':
-				self.action('keys', 'mute');
-			break;
-
-			case 'holdcall':
-				self.action('operation', 'holdcall');
-			break;
-
-			case 'makecall':
-				self.action('call', parameter);
-			break;
-
-			case 'intercept':
-				self.action('call', this.pickup);
-			break;
-		}
 	};
 
 	this.status = {
@@ -107,7 +79,7 @@ var telephone = new function handset() {
 			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
 
 			try {
-				self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]}
+				self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]};
 			}
 			catch(e) {
 				// FireFox = Uncaught TypeError: can't access dead object (set now)
@@ -120,7 +92,7 @@ var telephone = new function handset() {
 	}
 
 	this.runtime = platform.runtime.onMessage.addListener(function (message) {
-		if (message.tel) self.execute('makecall', message.tel);
+		if (message.tel) self.action('call', message.tel);
 	});
 
 	this.settings();

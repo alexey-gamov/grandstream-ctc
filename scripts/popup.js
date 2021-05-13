@@ -2,20 +2,21 @@ var platform = chrome || browser;
 var telephone = platform.extension.getBackgroundPage().telephone;
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.querySelectorAll('button:not([name="makecall"])').forEach(function(button) {
+	document.querySelectorAll('button').forEach(function(button) {
 		button.addEventListener('click', function() {
-			telephone.execute(button.name);
+			switch (button.name) {
+				case 'mutecall': telephone.action('keys', 'mute'); break;
+				case 'makecall': telephone.action('call', document.getElementsByName('dial')[0].value); break;
+				case 'intercept': telephone.action('call', telephone.pickup); break;
+				default: telephone.action('operation', button.name);
+			}
 		});
-	});
-
-	document.getElementsByName('makecall')[0].addEventListener('click', function(event) {
-		telephone.execute('makecall', document.getElementsByName('dial')[0].value);
 	});
 
 	document.querySelectorAll('button[name],[data-locale]').forEach(function(translate) {
 		translate.innerText = platform.i18n.getMessage(translate.name || translate.dataset.locale);
 	});
-	
+
 	document.getElementsByName('dial')[0].addEventListener('keypress', function(event) {
 		return String.fromCharCode(event.keyCode).match(/[0-9]/) ? true : event.preventDefault();
 	});

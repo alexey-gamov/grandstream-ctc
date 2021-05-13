@@ -6,7 +6,7 @@
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
 
 	"default_locale": "en",
-	"version": "0.2.0",
+	"version": "0.2.1",
 
 	"icons": {
 		"16": "assets/icon.png",
