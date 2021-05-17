@@ -1,0 +1,46 @@
+{
+	"description": {"message": "Перетворює телефонні номери в активні посилання для здійснення дзвінків через телефони Grandstream"},
+
+	"popup": {"message": "Управління телефоном"},
+	"options": {"message": "Налаштування розширення"},
+
+	"acceptcall": {"message": "Прийняти"},	
+	"endcall": {"message": "Завершити"},
+	"mutecall": {"message": "Мікрофон"},
+	"holdcall": {"message": "Утримання"},
+	"makecall": {"message": "Виклик"},
+	"intercept": {"message": "Перехопити"},
+	"save": {"message": "Зберегти налаштування"},
+
+	"fail": {"message": "<b>Помилка підключення:</b> апарат недоступний"},
+	"idle": {"message": "<b>Інформація:</b> отсутствует"},
+	"dialing": {"message": "<b>Інформація:</b> набір номера"},
+	"connected": {"message": "<b>Текущий дзвінок</b> $1"},
+	"onhold": {"message": "<b>Утримування розмови</b> $1"},
+	"calling": {"message": "<b>Вихідний дзвінок</b> $1"},
+	"ringing": {"message": "<b>Вхідний дзвінок</b> $1"},
+	"failed": {"message": "Виклик на номер $1 не вдався"},
+
+	"link_options": {"message": "Налаштування"},
+	"link_popup": {"message": "↵ Назад"},
+
+	"heading_dial": {"message": "Набір номера"},
+	"heading_connect": {"message": "Підключення до телефону"},
+	"heading_numbers": {"message": "Настройки номерів"},
+	"heading_extra": {"message": "Додаткові опції"},
+
+	"mark_ip": {"message": "IP-адреса"},
+	"mark_login": {"message": "Логин"},
+	"mark_pass": {"message": "Пароль"},
+	"mark_number": {"message": "Місцевий номер"},
+	"mark_pickup": {"message": "Номер самовивозу"},
+	"mark_content": {"message": "Обробляти номера"},
+	"mark_confirm": {"message": "Підтверджувати дзвінок"},
+
+	"radio_yes": {"message": "Так"},
+	"radio_no": {"message": "Ні"},
+	"radio_always": {"message": "Завжди"},
+	"radio_byhand": {"message": "Вручну"},
+
+	"confirmation": {"message": "Набрати номер $1?"}
+}
