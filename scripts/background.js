@@ -59,7 +59,13 @@ var telephone = new function handset() {
 
 		set now(value) {
 			this.object = value;
-			this.change(value);
+
+			try {
+				this.change(value);
+			}
+			catch(e) {
+				// FireFox = Uncaught TypeError: can't access dead object
+			}
 		},
 
 		listener: function(output) {
@@ -78,12 +84,7 @@ var telephone = new function handset() {
 			platform.browserAction.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
 			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
 
-			try {
-				self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]};
-			}
-			catch(e) {
-				// FireFox = Uncaught TypeError: can't access dead object (set now)
-			}
+			self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]};
 		}
 		else
 		{
