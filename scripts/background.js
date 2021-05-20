@@ -9,7 +9,7 @@ var telephone = new function handset() {
 			}
 		});
 
-		self.status.now = {fail: false};
+		self.status.now = {};
 	}
 
 	this.action = function(type, data, callback) {
@@ -24,7 +24,7 @@ var telephone = new function handset() {
 
 		socket.onerror = function() {
 			console.log("Unknown Error Occured. Make sure that Handset IP is correct!");
-			self.status.now = {text: platform.i18n.getMessage('fail'), color: '#ccc', fail: true};
+			self.status.now = {state: 'fail', color: '#ccc'};
 		};
 
 		socket.onload = function() {
@@ -84,7 +84,7 @@ var telephone = new function handset() {
 			platform.browserAction.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
 			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
 
-			self.status.now = {text: platform.i18n.getMessage(answer.state, number), color: colors[answer.state]};
+			self.status.now = {state: answer.state, number: number, color: colors[answer.state]};
 		}
 		else
 		{

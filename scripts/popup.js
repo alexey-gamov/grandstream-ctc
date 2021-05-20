@@ -22,17 +22,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	telephone.status.listener(function(data) {
-		if (typeof(data.text) != 'undefined')
+		if (typeof(data.state) != 'undefined')
 		{
 			var stripe = document.getElementsByTagName('blockquote')[0];			
 
 			stripe.style.backgroundColor = data.color || null;
 			stripe.style.display = data.color ? 'block' : null;
-			stripe.innerHTML = data.text;
+			stripe.innerHTML = platform.i18n.getMessage(data.state, data.number);
 		}
 
 		document.querySelectorAll('button, input').forEach(function(control) {
-			control.disabled = data.fail;
+			control.disabled = (data.state == 'fail');
 		});
 	});
 });
