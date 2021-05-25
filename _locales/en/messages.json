@@ -36,6 +36,7 @@
 	"mark_pickup": {"message": "Pickup number"},
 	"mark_content": {"message": "Convert tel to links"},
 	"mark_confirm": {"message": "Confirm outcome call"},
+	"mark_notice": {"message": "Display all notifications"},
 
 	"radio_yes": {"message": "Yes"},
 	"radio_no": {"message": "No"},

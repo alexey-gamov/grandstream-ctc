@@ -36,6 +36,7 @@
 	"mark_pickup": {"message": "Номер самовивозу"},
 	"mark_content": {"message": "Обробляти номера"},
 	"mark_confirm": {"message": "Підтверджувати дзвінок"},
+	"mark_notice": {"message": "Відображати повідомлення"},
 
 	"radio_yes": {"message": "Так"},
 	"radio_no": {"message": "Ні"},

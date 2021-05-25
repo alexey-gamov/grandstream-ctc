@@ -53,18 +53,46 @@ var telephone = new function handset() {
 		socket.send();
 	};
 
+	this.notify = function(data) {
+		if (this.notice == 0 || [undefined, 'fail', 'idle', 'dialing'].includes(data.state))
+		{
+			platform.notifications.clear('ctc');
+			return;
+		}
+
+		var contents = {
+			type: 'basic',
+			iconUrl: '../assets/icon.png',
+			title: platform.i18n.getMessage(data.state, '%').replace(/\s%|<b>|:<\/b>/gi, ''),
+			message: data.number,
+			buttons: [{title: platform.i18n.getMessage('endcall')}],
+			silent: true,
+			requireInteraction: true
+		}
+
+		var additive = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'};
+		if (additive[data.state]) contents['buttons'].unshift({title: platform.i18n.getMessage(additive[data.state])});
+
+		platform.notifications.getAll(function (items) {
+			if (items.hasOwnProperty('ctc')) platform.notifications.update('ctc', contents);
+			else platform.notifications.create('ctc', contents);
+		});
+	};
+
 	this.status = {
 		object: {},
 		change: function(value) {},
 
 		set now(value) {
-			this.object = value;
-
 			try {
 				this.change(value);
 			}
 			catch(e) {
 				// FireFox = Uncaught TypeError: can't access dead object
+			}
+			finally {
+				this.object = value;
+				self.notify(value);
 			}
 		},
 
@@ -92,9 +120,18 @@ var telephone = new function handset() {
 		}
 	}
 
-	this.runtime = platform.runtime.onMessage.addListener(function (message) {
-		if (message.tel) self.action('call', message.tel);
-	});
+	this.service = new function() {
+		platform.runtime.onMessage.addListener(function (message) {
+			if (message.tel) self.action('call', message.tel);
+		});
+
+		platform.notifications.onButtonClicked.addListener(function(notificationId, buttonIndex) {
+			var rules = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'}
+			var state = self.status.object['state'];
+
+			self.action('operation', (rules[state] && buttonIndex == 0) ? rules[state] : 'endcall');
+		});
+	}
 
 	this.settings();
 	this.updater = setInterval(this.update, 2500);

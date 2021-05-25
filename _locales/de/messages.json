@@ -36,6 +36,7 @@
 	"mark_pickup": {"message": "Abhörnummer"},
 	"mark_content": {"message": "Nummern handhaben"},
 	"mark_confirm": {"message": "Ergebnisanruf bestätigen"},
+	"mark_notice": {"message": "Benachrichtigungen anzeigen"},
 
 	"radio_yes": {"message": "Ja"},
 	"radio_no": {"message": "Nein"},

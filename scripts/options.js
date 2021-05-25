@@ -9,13 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		number: null,
 		pickup: '*72',
 		content: 1,
-		confirm: 1
+		confirm: 1,
+		notice: 0
 	}, function(items) {
 		save.disabled = true;
 
-		for (const [key, value] of Object.entries(items)) switch(key) {
-			case 'content': case 'confirm': document.querySelector('input[name="' + key + '"][value="' + value + '"]').checked = true; break;
-			default: document.getElementsByName(key)[0].value = value;
+		for (const [key, value] of Object.entries(items)) {
+			if (!['content', 'confirm', 'notice'].includes(key)) document.getElementsByName(key)[0].value = value;
+			else document.querySelector(`input[name="${key}"][value="${value}"]`).checked = true;
+		}
+
+		// Firefox = Disable notifications feature: action buttons are not supported
+		if (typeof(InstallTrigger) !== 'undefined')
+		{
+			document.querySelector('[data-locale="mark_notice"]').parentNode.style.display = 'none';
 		}
 	});
 
@@ -27,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			number: document.getElementsByName('number')[0].value,
 			pickup: document.getElementsByName('pickup')[0].value,
 			content: document.querySelector('input[name="content"]:checked').value,
-			confirm: document.querySelector('input[name="confirm"]:checked').value
+			confirm: document.querySelector('input[name="confirm"]:checked').value,
+			notice: document.querySelector('input[name="notice"]:checked').value
 		}, function(items) {
 			platform.extension.getBackgroundPage().telephone.settings();
 			save.disabled = true;

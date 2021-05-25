@@ -36,6 +36,7 @@
 	"mark_pickup": {"message": "Номер для перехвата"},
 	"mark_content": {"message": "Обрабатывать номера"},
 	"mark_confirm": {"message": "Подтверждать звонок"},
+	"mark_notice": {"message": "Отображать уведомления"},
 
 	"radio_yes": {"message": "Да"},
 	"radio_no": {"message": "Нет"},
