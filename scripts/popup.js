@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 platform.tabs.executeScript({code: "window.getSelection().toString()"}, function(selection) {
-	if (!platform.runtime.lastError && selection[0].length > 0)
+	if (!platform.runtime.lastError && selection[0])
 	{
 		document.getElementsByName('dial')[0].value = selection[0].replace(/[^0-9]/gi, '');
 		if (!Boolean(Number(telephone.confirm))) document.getElementsByName('makecall')[0].click();

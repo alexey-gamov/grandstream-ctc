@@ -6,7 +6,7 @@
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
 
 	"default_locale": "en",
-	"version": "0.2.3",
+	"version": "0.2.4",
 
 	"icons": {
 		"16": "assets/icon.png",
@@ -33,6 +33,10 @@
 
 	"options_ui": {
 		"page": "pages/options.html"
+	},
+
+	"omnibox": {
+		"keyword": "call"
 	},
 
 	"permissions": [

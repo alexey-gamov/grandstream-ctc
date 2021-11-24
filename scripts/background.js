@@ -121,6 +121,10 @@ var telephone = new function handset() {
 	}
 
 	this.service = new function() {
+		platform.omnibox.onInputEntered.addListener(function (tel) {
+			self.action('call', tel.replace(/[^0-9]/gi, ''));
+		});
+
 		platform.runtime.onMessage.addListener(function (message) {
 			if (message.tel) self.action('call', message.tel);
 		});
