@@ -1,0 +1,47 @@
+{
+	"description": {"message": "Konwertuje numery telefonów na aktywne linki dla połączeń z telefonów Grandstream"},
+
+	"popup": {"message": "Zarządzanie telefonem"},
+	"options": {"message": "Ustawienia rozszerzeń"},
+
+	"acceptcall": {"message": "Oprócz"},	
+	"endcall": {"message": "Spadek"},
+	"mutecall": {"message": "Niemy"},
+	"holdcall": {"message": "Utrzymać"},
+	"makecall": {"message": "Połączenie"},
+	"intercept": {"message": "Przechwycić"},
+	"save": {"message": "Zapisz ustawienia"},
+
+	"fail": {"message": "<b>Błąd połączenia:</b> nie znaleziono słuchawki"},
+	"idle": {"message": "<b>Informacja:</b> brak"},
+	"dialing": {"message": "<b>Informacja:</b> wybieranie numeru"},
+	"connected": {"message": "<b>Obecne połączenie:</b> $1"},
+	"onhold": {"message": "<b>Połączenie zawieszone:</b> $1"},
+	"calling": {"message": "<b>Połączenie wychodzące:</b> $1"},
+	"ringing": {"message": "<b>Połączenie przychodzące:</b> $1"},
+	"failed": {"message": "<b>Połączenie nieudane:</b> $1"},
+
+	"link_options": {"message": "Ustawienia"},
+	"link_popup": {"message": "↵ Powrót"},
+
+	"heading_dial": {"message": "Wybieranie"},
+	"heading_connect": {"message": "Połączenie telefoniczne"},
+	"heading_numbers": {"message": "Ustawienia pokoju"},
+	"heading_extra": {"message": "Dodatkowe opcje"},
+
+	"mark_ip": {"message": "Adres IP"},
+	"mark_login": {"message": "Zaloguj sie"},
+	"mark_pass": {"message": "Hasło"},
+	"mark_number": {"message": "Numer lokalny"},
+	"mark_pickup": {"message": "Numer odbioru"},
+	"mark_content": {"message": "Obsługiwać numery"},
+	"mark_confirm": {"message": "Potwierdź połączenie"},
+	"mark_notice": {"message": "Pokaż powiadomienia"},
+
+	"radio_yes": {"message": "Tak"},
+	"radio_no": {"message": "Nie"},
+	"radio_always": {"message": "Wszędzie"},
+	"radio_byhand": {"message": "Ręce"},
+
+	"confirmation": {"message": "Zadzwonić na numer $1?"}
+}
