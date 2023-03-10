@@ -6,10 +6,10 @@
 
 	"acceptcall": {"message": "Aceptar"},	
 	"endcall": {"message": "Rechazar"},
-	"mutecall": {"message": "Muda"},
-	"holdcall": {"message": "Mantener"},
+	"mutecall": {"message": "Silenciar"},
+	"holdcall": {"message": "Retener"},
 	"makecall": {"message": "Llamar"},
-	"intercept": {"message": "Interceptar"},
+	"intercept": {"message": "Capturar"},
 	"save": {"message": "Guardar ajustes"},
 
 	"fail": {"message": "<b>Error de conexión:</b> máquina no disponible"},
@@ -17,7 +17,7 @@
 	"dialing": {"message": "<b>Información:</b> marcando"},
 	"connected": {"message": "<b>Llamada actual:</b> $1"},
 	"onhold": {"message": "<b>Llamada en espera:</b> $1"},
-	"calling": {"message": "<b>Llamada entrante:</b> $1"},
+	"calling": {"message": "<b>Llamada saliente:</b> $1"},
 	"ringing": {"message": "<b>Llamada entrante:</b> $1"},
 	"failed": {"message": "<b>Llamada fallida:</b> $1"},
 
@@ -33,9 +33,9 @@
 	"mark_login": {"message": "Acceso"},
 	"mark_pass": {"message": "Contraseña"},
 	"mark_number": {"message": "Número interno propio"},
-	"mark_pickup": {"message": "Número de recogida"},
+	"mark_pickup": {"message": "Número de captura"},
 	"mark_content": {"message": "Convertir tel en enlaces"},
-	"mark_confirm": {"message": "Confirmar llamada de resultado"},
+	"mark_confirm": {"message": "Confirmar llamada saliente"},
 	"mark_notice": {"message": "Mostrar notificaciones"},
 
 	"radio_yes": {"message": "Sí"},
