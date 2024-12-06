@@ -1,12 +1,12 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 
 	"name": "Grandstream (click-to-call)",
 	"description": "__MSG_description__",
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
 
 	"default_locale": "en",
-	"version": "0.2.6",
+	"version": "0.3.0",
 
 	"icons": {
 		"16": "assets/icon.png",
@@ -15,7 +15,8 @@
 	},
 
 	"background": {
-		"scripts": ["scripts/background.js"]
+		"service_worker": "scripts/background.js",
+		"type": "module"
 	},
 
 	"content_scripts": [
@@ -26,7 +27,7 @@
 		}
 	],
 
-	"browser_action": {
+	"action": {
 		"default_icon": "assets/icon.png",
 		"default_popup": "pages/popup.html"
 	},
@@ -42,7 +43,11 @@
 	"permissions": [
 		"notifications",
 		"activeTab",
-		"storage",
-		"http://*/"
+		"storage"
+	],
+
+	"host_permissions": [
+		"http://*/*",
+		"https://*/*"
 	]
 }

@@ -1,66 +1,110 @@
-var telephone = new function handset() {
-	var platform = chrome || browser;
-	var self = this;
+const platform = chrome || browser;
 
-	this.settings = function() {
-		platform.storage.local.get(null, function(items) {
-			for (const [key, value] of Object.entries(items)) {
-				self[key] = value;
+const telephone = new class Handset {
+	constructor() {
+		this.settings();
+
+		platform.runtime.onConnect.addListener(page => {
+			if (page.name === 'popup') {
+				this.popup = true;
+				this.action('line', 'force-state', this.update.bind(this));
+
+				page.onDisconnect.addListener(() => {
+					this.popup = false;
+				});
 			}
 		});
 
-		self.status.now = {};
+		platform.runtime.onMessage.addListener((message) => {
+			if (message.action === 'update-settings') this.settings();
+			else if (message.tel) this.action('call', message.tel);
+			else if (message.type) this.action(message.type, message.data);
+		});
+
+		platform.notifications.onButtonClicked.addListener((notificationId, button) => {
+			const rules = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'};
+			this.action('operation', (rules[this.state] && button == 0) ? rules[this.state] : 'endcall');
+		});
+
+		platform.omnibox.onInputEntered.addListener((tel) => {
+			this.action('call', tel.replace(/[^0-9]/gi, ''));
+		});
+
+		setInterval(this.update.bind(this), 2500);
 	}
 
-	this.action = function(type, data, callback) {
-		var url = {
+	settings() {
+		platform.storage.local.get(null, (items) => {
+			Object.entries(items).forEach(([key, value]) => {
+				this[key] = value;
+			});
+		});
+	}
+
+	async action(type, data, callback) {
+		const url = {
 			operation: '/cgi-bin/api-phone_operation?cmd=' + data + '&passcode=',
 			call: '/cgi-bin/api-make_call?phonenumber=' + data + '&account=0&password=',
 			keys: '/cgi-bin/api-send_key?keys=' + data.toUpperCase() + '&passcode=',
 			line: '/cgi-bin/api-get_line_status?passcode='
+		};
+
+		try {
+			const response = await fetch('http://' + this.ip + url[type] + this.pass);
+
+			if (!response.ok) {
+				console.log('HTTP Error: ' + response.status);
+				this.notify = {state: 'fail', color: '#ccc'};
+				return;
+			}
+
+			const data = await response.json();
+
+			if (!data || !data.response) {
+				console.log('No response from Handset! Make sure the IP is correct!');
+				return;
+			}
+
+			if (typeof(data.response) !== 'string') {
+				console.log('Unexpected response from the Handset API!');
+				return;
+			}
+
+			if (callback) {
+				callback(data);
+			}
 		}
+		catch (error) {
+			console.log('Fetch error: ' + error.message);
+			this.notify = {state: 'fail', color: '#ccc'};
+		}
+	}
 
-		var socket = new XMLHttpRequest();
+	async update(response) {
+		if (response) {
+			const colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
+			const answer = response.body[0];
+			const number = answer.remotename ? `${answer.remotenumber} (${answer.remotename})` : answer.remotenumber;
 
-		socket.onerror = function() {
-			console.log("Unknown Error Occured. Make sure that Handset IP is correct!");
-			self.status.now = {state: 'fail', color: '#ccc'};
-		};
+			platform.action.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
+			platform.action.setBadgeTextColor({color: '#fff'});
+			platform.action.setBadgeText({text: colors[answer.state] ? '...' : ''});
 
-		socket.onload = function() {
-			var response = socket.response;
+			this.notify = {state: answer.state, number: number, color: colors[answer.state] || ''};
+			this.state = answer.state;
+		}
+		else this.action('line', 'current-state', this.update.bind(this));
+	}
 
-			if (!response || !response.response)
-			{
-				console.log("No response from Handset! Make sure the IP is correct!");
-				return;
-			}
+	set notify(data) {
+		if (this.popup) platform.runtime.sendMessage(data);
 
-			if (typeof(response.response) !== "string")
-			{
-				console.log("Unexpected response from the Handset\"s API!");
-				return;
-			}
-
-			if (callback)
-			{
-				callback(response);
-			}
-		};
-
-		socket.responseType = 'json';
-		socket.open('GET', 'http://' + this.ip + url[type] + this.pass);
-		socket.send();
-	};
-
-	this.notify = function(data) {
-		if (this.notice == 0 || [undefined, 'fail', 'idle', 'dialing'].includes(data.state))
-		{
+		if (this.notice == 0 || [undefined, 'fail', 'idle', 'dialing'].includes(data.state)) {
 			platform.notifications.clear('ctc');
 			return;
 		}
 
-		var contents = {
+		const contents = {
 			type: 'basic',
 			iconUrl: '../assets/icon.png',
 			title: platform.i18n.getMessage(data.state, '%').replace(/\s%|<b>|:<\/b>/gi, ''),
@@ -68,75 +112,14 @@ var telephone = new function handset() {
 			buttons: [{title: platform.i18n.getMessage('endcall')}],
 			silent: true,
 			requireInteraction: true
-		}
+		};
 
-		var additive = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'};
-		if (additive[data.state]) contents['buttons'].unshift({title: platform.i18n.getMessage(additive[data.state])});
+		const additive = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'};
+		if (additive[data.state]) contents.buttons.unshift({title: platform.i18n.getMessage(additive[data.state])});
 
 		platform.notifications.getAll(function (items) {
 			if (items.hasOwnProperty('ctc')) platform.notifications.update('ctc', contents);
 			else platform.notifications.create('ctc', contents);
 		});
-	};
-
-	this.status = {
-		object: {},
-		change: function(value) {},
-
-		set now(value) {
-			try {
-				this.change(value);
-			}
-			catch(e) {
-				// FireFox = Uncaught TypeError: can't access dead object
-			}
-			finally {
-				this.object = value;
-				self.notify(value);
-			}
-		},
-
-		listener: function(output) {
-			this.change = output;
-			this.change(this.object);
-		}
-	};
-
-	this.update = function(response) {
-		if (response)
-		{
-			var colors = {connected: '#acacac', onhold: '#acacac', calling: '#f7941d', ringing: '#39b54a', failed: '#e2001a'};
-			var answer = JSON.parse(JSON.stringify(response.body[0]));
-			var number = answer.remotename ? answer.remotenumber + ' (' + answer.remotename + ')': answer.remotenumber;
-
-			platform.browserAction.setBadgeBackgroundColor({color: colors[answer.state] || '#4285f4'});
-			platform.browserAction.setBadgeText({text: colors[answer.state] ? '…' : ''});
-
-			self.status.now = {state: answer.state, number: number, color: colors[answer.state]};
-		}
-		else
-		{
-			self.action('line', 'current-state', self.update);
-		}
 	}
-
-	this.service = new function() {
-		platform.omnibox.onInputEntered.addListener(function (tel) {
-			self.action('call', tel.replace(/[^0-9]/gi, ''));
-		});
-
-		platform.runtime.onMessage.addListener(function (message) {
-			if (message.tel) self.action('call', message.tel);
-		});
-
-		platform.notifications.onButtonClicked.addListener(function(notificationId, buttonIndex) {
-			var rules = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'}
-			var state = self.status.object['state'];
-
-			self.action('operation', (rules[state] && buttonIndex == 0) ? rules[state] : 'endcall');
-		});
-	}
-
-	this.settings();
-	this.updater = setInterval(this.update, 2500);
-}
+}();

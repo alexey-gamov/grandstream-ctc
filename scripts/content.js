@@ -1,45 +1,50 @@
-var platform = chrome || browser;
+const platform = chrome || browser;
 
-window.onload = platform.storage.local.get({content: 0, confirm: 0}, function (items) {
-	if (items.content == 0) return;
+window.onload = () => {
+    platform.storage.local.get({content: 0, confirm: 0}, (items) => {
+        if (items.content === 0) return;
 
-	filter = function(inspect) {
-		if (inspect.parentNode.nodeName === 'SCRIPT')
-		{
-			return NodeFilter.FILTER_REJECT;
-		}
+        const filter = (inspect) => {
+            if (inspect.parentNode.nodeName === 'SCRIPT') {
+                return NodeFilter.FILTER_REJECT;
+            }
 
-		if (inspect.textContent)
-		{
-			var regex = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){6,})(?:[\-\.\ \\\/]?)$/igm;
-			var found = inspect.textContent.match(regex);
-		}
+            let found = false;
 
-		if ('tel' in inspect.parentNode.dataset)
-		{
-			var found = (inspect.parentNode.dataset.tel == "true");
-		}
+            if (inspect.textContent) {
+                const regex = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){6,})(?:[\-\.\ \\\/]?)$/igm;
+                found = inspect.textContent.match(regex);
+            }
 
-		return found ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-	}
+            if ('tel' in inspect.parentNode.dataset) {
+                found = (inspect.parentNode.dataset.tel === 'true');
+            }
 
-	var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, filter, false);
-	var nodes = [];
+            return found ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+        };
 
-	while(node = walker.nextNode()) nodes.push(node);
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, filter, false);
+        const nodes = [];
 
-	nodes.forEach(function(node) {
-		var number = node.textContent.replace(/[^0-9]/gi, '');
-		var object = document.createElement('a');
+        let node;
 
-		object.href = 'phone:' + number;
-		object.innerHTML = node.textContent;
+        while (node = walker.nextNode()) {
+            nodes.push(node);
+        }
 
-		object.onclick = function() {
-			if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation', number))) return;
-			platform.runtime.sendMessage({tel: number});
-		};
+        nodes.forEach((node) => {
+            const number = node.textContent.replace(/[^0-9]/gi, '');
+            const object = document.createElement('a');
 
-		node.replaceWith(object);
-	});
-});
+            object.href = 'phone:' + number;
+            object.innerHTML = node.textContent;
+
+            object.onclick = () => {
+                if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation', number))) return;
+                platform.runtime.sendMessage({tel: number});
+            };
+
+            node.replaceWith(object);
+        });
+    });
+};
