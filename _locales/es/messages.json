@@ -12,6 +12,7 @@
 	"intercept": {"message": "Capturar"},
 	"save": {"message": "Guardar ajustes"},
 
+	"load": {"message": "Conexión al teléfono"},
 	"fail": {"message": "<b>Error de conexión:</b> máquina no disponible"},
 	"idle": {"message": "<b>Información:</b> ninguna"},
 	"dialing": {"message": "<b>Información:</b> marcando"},

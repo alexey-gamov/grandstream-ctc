@@ -12,6 +12,7 @@
 	"intercept": {"message": "Abfangen"},
 	"save": {"message": "Einstellungen speichern"},
 
+	"load": {"message": "Verbindung zum Telefon herstellen"},
 	"fail": {"message": "<b>Verbindungsfehler:</b> computer nicht verfügbar"},
 	"idle": {"message": "<b>Informationen:</b> nicht verfügbar"},
 	"dialing": {"message": "<b>Informationen:</b> wählen"},

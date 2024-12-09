@@ -1,8 +1,10 @@
-const platform = chrome || browser;
-
 window.onload = () => {
-    platform.storage.local.get({content: 0, confirm: 0}, (items) => {
-        if (items.content === 0) return;
+	const platform = chrome || browser;
+	let settings = ['confirm', 'content'];
+
+    platform.storage.local.get(settings, (items) => {
+		if (items.content == 0) return
+		else settings.confirm = items.confirm;
 
         const filter = (inspect) => {
             if (inspect.parentNode.nodeName === 'SCRIPT') {
@@ -40,11 +42,18 @@ window.onload = () => {
             object.innerHTML = node.textContent;
 
             object.onclick = () => {
-                if (Boolean(Number(items.confirm)) && !confirm(platform.i18n.getMessage('confirmation', number))) return;
-                platform.runtime.sendMessage({tel: number});
+                if (Boolean(Number(settings.confirm)) && !confirm(platform.i18n.getMessage('confirmation', number))) return;
+                platform.runtime.sendMessage({action: 'call', data: number});
             };
 
             node.replaceWith(object);
         });
     });
+
+	platform.storage.onChanged.addListener((changes, area) => {
+		if (area === 'local') {
+			if ('confirm' in changes) settings.confirm = changes.confirm.newValue;
+			if ('content' in changes) platform.runtime.sendMessage({action: 'refresh-page'});
+		}
+	});
 };

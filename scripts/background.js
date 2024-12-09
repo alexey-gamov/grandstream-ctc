@@ -1,24 +1,32 @@
 const platform = chrome || browser;
 
-const telephone = new class Handset {
+const telephone = new class client {
 	constructor() {
 		this.settings();
 
-		platform.runtime.onConnect.addListener(page => {
-			if (page.name === 'popup') {
-				this.popup = true;
-				this.action('line', 'force-state', this.update.bind(this));
+		platform.runtime.onConnect.addListener((page) => {
+			this[page.name] = true;
+			this.notify = this.status;
 
-				page.onDisconnect.addListener(() => {
-					this.popup = false;
-				});
-			}
+			page.onDisconnect.addListener(() => {
+				this[page.name] = false;
+			});
 		});
 
 		platform.runtime.onMessage.addListener((message) => {
-			if (message.action === 'update-settings') this.settings();
-			else if (message.tel) this.action('call', message.tel);
-			else if (message.type) this.action(message.type, message.data);
+			switch (message.action) {
+				case 'refresh-page':
+					platform.tabs.query({active: true, currentWindow: true}, tabs => {
+						platform.tabs.reload(tabs[0].id);
+					});
+				break;
+
+				case 'update-settings':
+					this.settings();
+				break;
+
+				default: this.action(message.action, message.data);
+			}
 		});
 
 		platform.notifications.onButtonClicked.addListener((notificationId, button) => {
@@ -39,6 +47,8 @@ const telephone = new class Handset {
 				this[key] = value;
 			});
 		});
+
+		this.status = {state: 'load', color: '#387da9'};
 	}
 
 	async action(type, data, callback) {
@@ -70,9 +80,7 @@ const telephone = new class Handset {
 				return;
 			}
 
-			if (callback) {
-				callback(data);
-			}
+			if (callback) callback(data);
 		}
 		catch (error) {
 			console.log('Fetch error: ' + error.message);
@@ -91,15 +99,16 @@ const telephone = new class Handset {
 			platform.action.setBadgeText({text: colors[answer.state] ? '...' : ''});
 
 			this.notify = {state: answer.state, number: number, color: colors[answer.state] || ''};
-			this.state = answer.state;
 		}
 		else this.action('line', 'current-state', this.update.bind(this));
 	}
 
 	set notify(data) {
+		this.status = data;
+
 		if (this.popup) platform.runtime.sendMessage(data);
 
-		if (this.notice == 0 || [undefined, 'fail', 'idle', 'dialing'].includes(data.state)) {
+		if (this.notice == 0 || [undefined, 'load', 'fail', 'idle', 'dialing'].includes(data.state)) {
 			platform.notifications.clear('ctc');
 			return;
 		}
@@ -117,7 +126,7 @@ const telephone = new class Handset {
 		const additive = {connected: 'holdcall', onhold: 'holdcall', ringing: 'acceptcall'};
 		if (additive[data.state]) contents.buttons.unshift({title: platform.i18n.getMessage(additive[data.state])});
 
-		platform.notifications.getAll(function (items) {
+		platform.notifications.getAll((items) => {
 			if (items.hasOwnProperty('ctc')) platform.notifications.update('ctc', contents);
 			else platform.notifications.create('ctc', contents);
 		});

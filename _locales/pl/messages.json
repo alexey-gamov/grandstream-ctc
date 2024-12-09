@@ -12,6 +12,7 @@
 	"intercept": {"message": "Przechwycić"},
 	"save": {"message": "Zapisz ustawienia"},
 
+	"load": {"message": "Łączę z telefonem"},
 	"fail": {"message": "<b>Błąd połączenia:</b> nie znaleziono słuchawki"},
 	"idle": {"message": "<b>Informacja:</b> brak"},
 	"dialing": {"message": "<b>Informacja:</b> wybieranie numeru"},

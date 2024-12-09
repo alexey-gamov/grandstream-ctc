@@ -6,7 +6,7 @@
 	"homepage_url": "https://github.com/alexey-gamov/grandstream-ctc",
 
 	"default_locale": "en",
-	"version": "0.3.0",
+	"version": "0.3.1",
 
 	"icons": {
 		"16": "assets/icon.png",
@@ -15,17 +15,14 @@
 	},
 
 	"background": {
-		"service_worker": "scripts/background.js",
-		"type": "module"
+		"service_worker": "scripts/background.js"
 	},
 
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["scripts/content.js"],
-			"run_at": "document_end"
-		}
-	],
+	"content_scripts": [{
+		"matches": ["*://*/*"],
+		"js": ["scripts/content.js"],
+		"run_at": "document_end"
+	}],
 
 	"action": {
 		"default_icon": "assets/icon.png",
@@ -43,11 +40,11 @@
 	"permissions": [
 		"notifications",
 		"activeTab",
-		"storage"
+		"storage",
+		"scripting"
 	],
 
 	"host_permissions": [
-		"http://*/*",
-		"https://*/*"
+		"*://*/*"
 	]
 }

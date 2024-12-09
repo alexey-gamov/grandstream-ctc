@@ -12,6 +12,7 @@
 	"intercept": {"message": "截距"},
 	"save": {"message": "保存设置"},
 
+	"load": {"message": "连接到手机"},
 	"fail": {"message": "<b>连接错误:</b> 没有找到手机"},
 	"idle": {"message": "<b>信息:</b> none"},
 	"dialing": {"message": "<b>信息:</b> dialing"},

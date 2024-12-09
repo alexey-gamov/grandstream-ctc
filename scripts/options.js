@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
-	document.querySelectorAll('button[name],[data-locale]').forEach(translate => {
+	document.querySelectorAll('button[name],[data-locale]').forEach((translate) => {
 		translate.innerText = platform.i18n.getMessage(translate.name || translate.dataset.locale);
 	});
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		return String.fromCharCode(event.keyCode).match(/[0-9.]/) ? true : event.preventDefault();
 	});
 
-	document.querySelectorAll('input').forEach(input => {
+	document.querySelectorAll('input').forEach((input) => {
 		input.addEventListener('focus', () => {
 			save.disabled = false;
 		});
