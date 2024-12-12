@@ -4,7 +4,7 @@
 	"popup": {"message": "Anrufverwaltung"},
 	"options": {"message": "Erweiterungseinstellungen"},
 
-	"acceptcall": {"message": "Außer"},	
+	"acceptcall": {"message": "Außer"},
 	"endcall": {"message": "Ablehnen"},
 	"mutecall": {"message": "Stumm"},
 	"holdcall": {"message": "Halt"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Überall"},
 	"radio_byhand": {"message": "Manuell"},
 
-	"confirmation": {"message": "Wähle die nummer $1?"}
+	"confirmation": {"message": "Wähle die nummer $1?"},
+
+	"locale": {"message": "de"}
 }

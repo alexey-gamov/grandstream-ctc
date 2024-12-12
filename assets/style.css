@@ -1,6 +1,6 @@
 body {margin: 0; height: 100%; width: 400px; font-size: small; color: #295288; font-family: 'Open Sans', sans-serif; user-select: none !important}
 
-nav {padding: 2px; height: 28px; line-height: 28px; background: #295288; color: #fff; margin-bottom: 15px}
+nav {padding: 2px; height: 28px; line-height: 28px; background: #295288; color: #fff; margin-bottom: 15px; box-shadow: 0 0 14px 0 rgba(41, 82, 136, .15)}
 nav span {text-align: left; float: left; padding-left: 8px; font-weight: bold}
 nav a {text-align: right; float: right; padding-right: 6px; font-size: 12px; color: #fff; text-decoration: none}
 nav a:hover {text-decoration: underline}
@@ -11,16 +11,21 @@ header {font-weight: normal; font-size: 1.3em; border-bottom: 1px solid #e1e1e1;
 blockquote {position: relative; background-color: #8dc63f; color: #fff; margin: 0 0 10px 0; padding: 8px; display: none}
 h4 {margin-top: 8px; margin-bottom: 8px}
 
-article {height: 35px; display: flex; margin: 0 -4px 0 -1px}
-article mark {width: 200px; padding: 5px 5px; background-color: transparent; color: #295288}
-article mark input {width: 100%; margin: -4px 0 0 -10px}
-article mark, article section {display: table-cell; padding-left: 10px !important; margin-right: 4px}
+article {height: 35px; display: flex; margin: 1px -4px 0 0px}
+article:last-child {margin-bottom: -2px}
+article mark {width: 200px; padding: 5px 5px; background-color: transparent; color: #295288; display: table-cell; padding-left: 10px !important; margin-right: 4px}
+article mark input {width: 100%; margin: -5px 0 0 -10px}
+article section:has(span) {padding: 5px 0; margin-left: -5px}
+
+input, button, blockquote {border-radius: 3px; transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out}
 
 input[type=text], input[type=password] {padding: 5px 4px; border: 1px solid #ccc; border-top: 1px solid #999; width: 150px; font-family: Tahoma, Arial, sans-serif}
+input[type=radio] {margin-top: -2px; vertical-align: middle; accent-color: #387da9}
 input[readonly] {color: #888}
+input:focus {outline: none; border-color: #434a52; box-shadow: 0px 1px 1px rgba(125, 125, 125, 0.075) inset, 0px 0px 5px rgba(125, 125, 125, 0.3)}
 
-button {padding: 6px 12px; margin-right: 3px; background-color: #46A7C9; border: 1px solid #fff; color: #fff; cursor: pointer; height: 30px; flex: 1 1 auto}
+button {padding: 6px 11px; margin-right: 4px; background-color: #46A7C9; border: 1px solid #46A7C9; color: #fff; cursor: pointer; height: 28px; flex: 1 1 auto}
 button:hover:enabled {background: #02a9e0}
+button:focus {outline: none; border-color: #387da9}
 button[disabled] {opacity: .65; cursor: default}
-
-input:focus, button:focus {outline: none; border-color: #434a52; box-shadow: 0px 1px 1px rgba(125, 125, 125, 0.075) inset, 0px 0px 8px rgba(125, 125, 125, 0.3)}
+button:lang(zh_CN) {line-height: 16px}

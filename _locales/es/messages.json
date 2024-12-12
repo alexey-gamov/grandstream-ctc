@@ -4,7 +4,7 @@
 	"popup": {"message": "Gestión de llamadas"},
 	"options": {"message": "Configuración de la extensión"},
 
-	"acceptcall": {"message": "Aceptar"},	
+	"acceptcall": {"message": "Aceptar"},
 	"endcall": {"message": "Rechazar"},
 	"mutecall": {"message": "Silenciar"},
 	"holdcall": {"message": "Retener"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Siempre"},
 	"radio_byhand": {"message": "A mano"},
 
-	"confirmation": {"message": "Marcar el número $1?"}
+	"confirmation": {"message": "Marcar el número $1?"},
+
+	"locale": {"message": "es"}
 }

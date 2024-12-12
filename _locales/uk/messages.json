@@ -4,7 +4,7 @@
 	"popup": {"message": "Управління телефоном"},
 	"options": {"message": "Налаштування розширення"},
 
-	"acceptcall": {"message": "Прийняти"},	
+	"acceptcall": {"message": "Прийняти"},
 	"endcall": {"message": "Завершити"},
 	"mutecall": {"message": "Мікрофон"},
 	"holdcall": {"message": "Утримання"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Завжди"},
 	"radio_byhand": {"message": "Вручну"},
 
-	"confirmation": {"message": "Набрати номер $1?"}
+	"confirmation": {"message": "Набрати номер $1?"},
+
+	"locale": {"message": "uk"}
 }

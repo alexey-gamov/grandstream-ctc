@@ -4,7 +4,7 @@
 	"popup": {"message": "Zarządzanie telefonem"},
 	"options": {"message": "Ustawienia rozszerzeń"},
 
-	"acceptcall": {"message": "Oprócz"},	
+	"acceptcall": {"message": "Oprócz"},
 	"endcall": {"message": "Spadek"},
 	"mutecall": {"message": "Niemy"},
 	"holdcall": {"message": "Utrzymać"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Wszędzie"},
 	"radio_byhand": {"message": "Ręce"},
 
-	"confirmation": {"message": "Zadzwonić na numer $1?"}
+	"confirmation": {"message": "Zadzwonić na numer $1?"},
+
+	"locale": {"message": "pl"}
 }

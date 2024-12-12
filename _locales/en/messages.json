@@ -4,7 +4,7 @@
 	"popup": {"message": "Phone managment"},
 	"options": {"message": "Extension settings"},
 
-	"acceptcall": {"message": "Except"},	
+	"acceptcall": {"message": "Except"},
 	"endcall": {"message": "Decline"},
 	"mutecall": {"message": "Mute"},
 	"holdcall": {"message": "Hold"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Always"},
 	"radio_byhand": {"message": "By hand"},
 
-	"confirmation": {"message": "Call number $1?"}
+	"confirmation": {"message": "Call number $1?"},
+
+	"locale": {"message": "en"}
 }

@@ -4,7 +4,7 @@
 	"popup": {"message": "电话管理"},
 	"options": {"message": "扩展设置"},
 
-	"acceptcall": {"message": "除了"},	
+	"acceptcall": {"message": "除了"},
 	"endcall": {"message": "衰退"},
 	"mutecall": {"message": "沉默的"},
 	"holdcall": {"message": "抓住"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "总是"},
 	"radio_byhand": {"message": "用手"},
 
-	"confirmation": {"message": "拨 $1?"}
+	"confirmation": {"message": "拨 $1?"},
+
+	"locale": {"message": "zh_CN"}
 }

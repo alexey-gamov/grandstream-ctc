@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (typeof InstallTrigger !== 'undefined') {
 			document.querySelector('[data-locale="mark_notice"]').parentNode.style.display = 'none';
 		}
+
+		document.querySelector('html').setAttribute('lang', platform.i18n.getMessage('locale'));
 	});
 
 	save.addEventListener('click', () => {

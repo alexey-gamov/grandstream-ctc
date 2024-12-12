@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		Object.entries(varible).forEach(([key, value]) => {
 			this[key] = value;
 		});
+
+		document.querySelector('html').setAttribute('lang', platform.i18n.getMessage('locale'));
 	});
 
 	platform.runtime.onMessage.addListener((data) => {

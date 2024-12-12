@@ -1,6 +1,6 @@
 # Grandstream (click-to-call)
 
-![grandstream-ctc](https://i.postimg.cc/jdFKzY3m/grandstream-ctc.png)
+![grandstream-ctc](https://i.postimg.cc/Pqn6NxTW/grandstream-ctc.png)
 
 ## Описание
 
@@ -16,12 +16,13 @@
 ### Установить
 
 - [Google Chrome](https://chrome.google.com/webstore/detail/grandstream-click-to-call/gcmffhldcmblemadbaooobdopcbjkcpc) (Opera & Edge)
-- [Mozilla Firefox](https://addons.mozilla.org/ru/firefox/addon/grandstream-ctc/)
+- [Mozilla Firefox](https://addons.mozilla.org/ru/firefox/addon/grandstream-ctc) _(не обновляется)_
 
 ### Планы
 
 - Перехват ссылок с разными протоколами: `callto`, `sip`, `tel`
 - Переработка парсинга номеров для более точного определения
+- Работа с несколькими телефонными линиями _(сейчас 1)_
 
 ## Лицензия
 

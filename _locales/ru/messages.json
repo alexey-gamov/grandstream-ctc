@@ -4,7 +4,7 @@
 	"popup": {"message": "Управление звонками"},
 	"options": {"message": "Настройки расширения"},
 
-	"acceptcall": {"message": "Принять"},	
+	"acceptcall": {"message": "Принять"},
 	"endcall": {"message": "Завершить"},
 	"mutecall": {"message": "Микрофон"},
 	"holdcall": {"message": "Удержание"},
@@ -44,5 +44,7 @@
 	"radio_always": {"message": "Везде"},
 	"radio_byhand": {"message": "Вручную"},
 
-	"confirmation": {"message": "Набрать номер $1?"}
+	"confirmation": {"message": "Набрать номер $1?"},
+
+	"locale": {"message": "ru"}
 }
