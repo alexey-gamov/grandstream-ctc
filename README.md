@@ -16,7 +16,7 @@
 ### Установить
 
 - [Google Chrome](https://chrome.google.com/webstore/detail/grandstream-click-to-call/gcmffhldcmblemadbaooobdopcbjkcpc) (Opera & Edge)
-- [Mozilla Firefox](https://addons.mozilla.org/ru/firefox/addon/grandstream-ctc) _(не обновляется)_
+- [Mozilla Firefox](https://addons.mozilla.org/ru/firefox/addon/grandstream-ctc) _(старый манифест v2)_
 
 ### Планы
 

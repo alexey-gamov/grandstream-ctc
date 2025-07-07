@@ -24,8 +24,8 @@ input[type=radio] {margin-top: -2px; vertical-align: middle; accent-color: #387d
 input[readonly] {color: #888}
 input:focus {outline: none; border-color: #434a52; box-shadow: 0px 1px 1px rgba(125, 125, 125, 0.075) inset, 0px 0px 5px rgba(125, 125, 125, 0.3)}
 
-button {padding: 6px 11px; margin-right: 4px; background-color: #46A7C9; border: 1px solid #46A7C9; color: #fff; cursor: pointer; height: 28px; flex: 1 1 auto}
+button {padding: 6px 11px; margin-right: 4px; background-color: #46A7C9; border: 1px solid #46A7C9; color: #fff; cursor: pointer; height: 28px; flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center}
 button:hover:enabled {background: #02a9e0}
 button:focus {outline: none; border-color: #387da9}
 button[disabled] {opacity: .65; cursor: default}
-button:lang(zh_CN) {line-height: 16px}
+button:lang(zh_CN) {padding-top: 4px}
