@@ -4,11 +4,11 @@
 	"popup": {"message": "Anrufverwaltung"},
 	"options": {"message": "Erweiterungseinstellungen"},
 
-	"acceptcall": {"message": "Außer"},
+	"acceptcall": {"message": "Annehmen"},
 	"endcall": {"message": "Ablehnen"},
 	"mutecall": {"message": "Stumm"},
-	"holdcall": {"message": "Halt"},
-	"makecall": {"message": "Wähle"},
+	"holdcall": {"message": "Halten"},
+	"makecall": {"message": "Wählen"},
 	"intercept": {"message": "Abfangen"},
 	"save": {"message": "Einstellungen speichern"},
 
@@ -18,20 +18,20 @@
 	"dialing": {"message": "<b>Informationen:</b> wählen"},
 	"connected": {"message": "<b>Aktuelles gespräch:</b> $1"},
 	"onhold": {"message": "<b>Gespräch halten:</b> $1"},
-	"calling": {"message": "<b>Ausgehender anruf:</b> $1"},
-	"ringing": {"message": "<b>Eingehender anruf:</b> $1"},
-	"failed": {"message": "Anruf an nummer $1 fehlgeschlagen"},
+	"calling": {"message": "<b>Ausgehender Anruf:</b> $1"},
+	"ringing": {"message": "<b>Eingehender Anruf:</b> $1"},
+	"failed": {"message": "Anruf an $1 fehlgeschlagen"},
 
-	"link_options": {"message": "Anpassung"},
-	"link_popup": {"message": "↵ Zurüc"},
+	"link_options": {"message": "Einstellungen"},
+	"link_popup": {"message": "↵ Zurück"},
 
 	"heading_dial": {"message": "Nummer wählen"},
 	"heading_connect": {"message": "Telefonverbindung"},
 	"heading_numbers": {"message": "Raumeinstellungen"},
 	"heading_extra": {"message": "Zusätzliche Optionen"},
 
-	"mark_ip": {"message": "IP-adresse"},
-	"mark_login": {"message": "Anmeldung"},
+	"mark_ip": {"message": "IP-Adresse"},
+	"mark_login": {"message": "Benutzername"},
 	"mark_pass": {"message": "Passwort"},
 	"mark_number": {"message": "Nebenstellennummer"},
 	"mark_pickup": {"message": "Abhörnummer"},
@@ -44,7 +44,7 @@
 	"radio_always": {"message": "Überall"},
 	"radio_byhand": {"message": "Manuell"},
 
-	"confirmation": {"message": "Wähle die nummer $1?"},
+	"confirmation": {"message": "Nummer $1 wählen?"},
 
 	"locale": {"message": "de"}
 }
